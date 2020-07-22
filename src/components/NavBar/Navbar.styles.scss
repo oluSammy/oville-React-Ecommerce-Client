@@ -1,0 +1,103 @@
+.navbar {
+    grid-column: 1 / -1;
+    
+    display: flex;
+    align-items: center;
+    padding: .3rem 2rem;
+    background-color: #03045e;
+    color: white;
+
+    &__logo {
+        margin-right: 17%;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        &--text {
+            color: #ffffff;
+            font-size: 3rem;
+            font-family: 'Kaushan Script', cursive;
+            margin-left: 1rem;
+        }
+
+        &--icon {
+            height: 4rem;
+            width: 4rem;
+        }
+        
+        &--icon-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &__form {
+        margin-right: auto;
+        width: 50%;
+
+        &--input {
+            width: 90%;
+            padding: .8rem 1rem;
+            border-radius: 2rem;
+            border: none;
+            font-size: 1.5rem;
+            transition: all .2s;
+
+            &:focus {
+                border: none;
+            }
+        }
+
+        &--submit {
+            margin-left: -4rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        &--icon {
+            width: 1.7rem;
+            height: 1.7rem;
+        }
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+
+        &--item {
+            list-style-type: none;
+        }
+
+        &--link {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-right: 3rem;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &--cart-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        &--icon {
+            font-size: 6rem;
+            list-style-type: square;
+        }
+
+        &--cart {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.8rem;
+            font-size: 1.4rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+}
