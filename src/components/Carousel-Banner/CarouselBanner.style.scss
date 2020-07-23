@@ -1,0 +1,53 @@
+.carousel-banner {
+    grid-column: main-start / center-end;
+    margin-left: 2rem;
+    position: relative;
+    animation: slideshow 1s ease-in-out;
+
+    &__img-slide {
+        // background-image:  linear-gradient(rgba(86, 128, 233, 0.4), rgba(19, 9, 37, 0.5)),url(../../assets/img/laptop-slide.jpg);
+        height: 100%;
+        max-width: 100%;
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
+    }
+
+    &__content {
+        color: #ffffff;
+        position: absolute;
+        top: 18%;
+        left: 15%;
+    }
+
+    &__heading {
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: .6rem;
+    }
+
+    &__slogan {
+        font-size: 1.82rem;
+        font-family: 'Bad Script', cursive;
+        margin-bottom: 1rem;
+    }
+
+    &__btn {
+        font-size: 2.5rem;
+        background-color: #ffffff;
+        border: none;
+        padding: .5rem 2.5rem;
+        border-radius: 2rem;
+        margin-top: 1.5rem;
+        transition: all .2s;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}
+
+.slider a.previousButton {
+    color: #ffffff !important;
+}

@@ -1,0 +1,48 @@
+.category {
+    grid-column: center-start / main-start;
+
+    background-color: #f7f7f7;
+    color: #737373;
+    
+    &__heading {
+        font-size: 2.3rem;
+        letter-spacing: 1.2px;
+        padding-left: 2rem;
+        background-color: #111E6C;
+        color: #ffffff;
+
+    }
+
+    &__list {
+        list-style-type: none;
+        margin-top: .8rem;
+
+        & li {
+            margin-bottom: 1rem;
+            cursor: pointer;
+
+        }
+
+        &--item {
+            text-decoration: none;
+            color: #737373;
+            font-size: 1.9rem;
+        }
+    }
+
+    &__icon {
+        margin-right: .7rem;
+        font-size: 1.4rem;
+        color: #111E6C;
+        margin-left: 1.2rem;
+    }
+}
+
+.category-active {
+    background-color:  #111f6ca9;
+
+    & a {
+        color: #ffffff;
+    }
+
+}
