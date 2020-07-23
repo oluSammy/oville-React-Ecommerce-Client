@@ -1,0 +1,12 @@
+@import '../../sass/abstracts/variable';
+@import '../../sass//abstracts/mixin';
+
+.featured-products {
+    grid-column: full-start / main-start;
+    background-color: $color-grey-light;
+
+    &__heading {
+        @include column-heading;
+        margin-bottom: 2rem;
+    }
+}

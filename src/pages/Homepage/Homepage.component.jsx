@@ -3,6 +3,8 @@ import './Homepage.styles.scss';
 import NavBar from '../../components/NavBar/Navbar.components';
 import Category from './../../components/Category/Category.component';
 import CarouselBanner from './../../components/Carousel-Banner/CarouselBanner.component';
+import FeaturedProducts from '../../components/Featured-Products/FeaturedProducts.component';
+
 
 
 
@@ -12,6 +14,7 @@ const HomePage = () => (
         <NavBar/>
         <Category/>
         <CarouselBanner/>
+        <FeaturedProducts/>
     </div>
 );
 

@@ -1,15 +1,14 @@
+@import '../../sass/abstracts/variable';
+@import '.././../sass/abstracts/mixin';
+
 .category {
     grid-column: center-start / main-start;
 
-    background-color: #f7f7f7;
-    color: #737373;
+    background-color:$color-grey-light;
+    color: $text-color;
     
     &__heading {
-        font-size: 2.3rem;
-        letter-spacing: 1.2px;
-        padding-left: 2rem;
-        background-color: #111E6C;
-        color: #ffffff;
+        @include column-heading;
 
     }
 
@@ -20,12 +19,11 @@
         & li {
             margin-bottom: 1rem;
             cursor: pointer;
-
         }
 
         &--item {
             text-decoration: none;
-            color: #737373;
+            color: $text-color;
             font-size: 1.9rem;
         }
     }
@@ -33,7 +31,7 @@
     &__icon {
         margin-right: .7rem;
         font-size: 1.4rem;
-        color: #111E6C;
+        color: $color-royal-blue;
         margin-left: 1.2rem;
     }
 }
@@ -42,7 +40,7 @@
     background-color:  #111f6ca9;
 
     & a {
-        color: #ffffff;
+        color: $color-grey-light;
     }
 
 }
