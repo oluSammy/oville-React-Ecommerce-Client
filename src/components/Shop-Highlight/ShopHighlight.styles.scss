@@ -1,0 +1,42 @@
+@import '../../sass/abstracts/variable';
+
+.shop-highlight {
+    width: 100%;
+    background-color: $color-grey-light;
+    margin-bottom: 2rem;
+
+    &__heading {
+        display: flex;
+        align-items: center;
+        background-color: $color-royal-blue;
+        color: $color-white;
+        padding: .1rem 2rem;
+
+    }
+
+    &__name {
+        font-size: 2.5rem;
+        margin-right: 5%;
+    }
+
+    &__deal {
+        margin-right: auto;
+        font-size: 1.5rem;
+    }
+
+    &__link {
+        color: $color-white;
+        font-size: 2rem;
+    }
+
+    &__arr {
+        font-size: 2rem;
+    }
+
+    &__content {
+        padding: 1rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+        grid-row-gap: 1.5rem;
+    }
+}

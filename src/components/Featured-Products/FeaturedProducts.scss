@@ -3,7 +3,8 @@
 
 .featured-products {
     grid-column: full-start / main-start;
-    background-color: $color-grey-light;
+    background-color: $color-white;
+    height: min-content;
 
     &__heading {
         @include column-heading;

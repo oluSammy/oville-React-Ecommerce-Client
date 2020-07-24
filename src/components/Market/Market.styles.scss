@@ -1,0 +1,11 @@
+@import '../../sass/abstracts/variable';
+
+.market {
+    grid-row: 3 / 4;
+    grid-column: main-start / center-end;
+    margin-left: 2rem;
+    background-color: $color-white;
+    padding: 3rem;
+    height: min-content;
+    
+}
