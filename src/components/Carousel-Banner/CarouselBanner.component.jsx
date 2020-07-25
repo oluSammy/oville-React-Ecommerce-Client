@@ -7,6 +7,7 @@ import 'react-animated-slider/build/horizontal.css';
 import desktopBg from '../../assets/img/desktop-slide-1.jpg';
 import laptopBg from '../../assets/img/laptop-slide-1.jpg';
 import phoneBg from '../../assets/img/phone-slide.jpg';
+import { Link } from 'react-router-dom';
 
 class CarouselBanner extends React.Component {
     
@@ -27,7 +28,7 @@ class CarouselBanner extends React.Component {
                             <div className="carousel-banner__content">
                                 <h1 className="carousel-banner__heading">{item.title}</h1>
                                 <p className="carousel-banner__slogan">{item.description}</p>
-                                <button className="carousel-banner__btn">{item.button}</button>
+                                <Link to="/shop" className="carousel-banner__btn">{item.button}</Link>
                             </div>
                         </div>
                     ))}

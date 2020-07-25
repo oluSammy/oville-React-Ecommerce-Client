@@ -7,16 +7,18 @@ import FeaturedProducts from '../../components/Featured-Products/FeaturedProduct
 import Market from '../../components/Market/Market.component';
 
 
-
-
-
-
 const HomePage = () => (
     <div className="homepage">
-        <NavBar/>
-        <Category/>
+        <div className="homepage__nav">
+            <NavBar/>
+        </div>
+        <div className="homepage__category">
+            <Category/>
+        </div>
         <CarouselBanner/>
-        <FeaturedProducts/>
+        <div className="homepage__featured">
+            <FeaturedProducts/>
+        </div>
         <Market/>
     </div>
 );

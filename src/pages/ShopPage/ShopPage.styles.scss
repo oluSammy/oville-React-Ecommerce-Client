@@ -1,22 +1,27 @@
 @import '../../sass/abstracts/variable';
 
-.homepage {
+.shop-page {
     display: grid;
     grid-template-columns: [full-start] minmax(1rem, 3rem) [center-start ] minmax(min-content, 20rem) [main-start] 
     minmax(min-content, 110rem) [main-end] 1fr [center-end] minmax(2rem, 1fr) [full-end];
     grid-row-gap: 3rem;
 
     &__nav {
-        grid-column: 1 / -1;
+        grid-column: full-start / full-end;
     }
 
     &__category {
         grid-column: center-start / main-start;
         background-color: $color-white;
-        min-height: 100%;
+        height: min-content;
+        padding-bottom: 4rem;
     }
 
-    &__featured {
-        grid-column: full-start / main-start;
+    // &__feat {
+    //     grid-column: full-start / main-start;
+    // }
+
+    &__highlight {
+        margin-left: 3rem;
     }
 }

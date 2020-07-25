@@ -14,7 +14,7 @@ const Product = () => (
         <div className="product__description">
             <p className="product__description--text">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, odit? 
-                Lorem ipsum dolor sit amet.
+                Lorem ipsum dolor.
             </p>
             <div className="product__btn">
                 <button className="btn-buy">Buy Now</button>
