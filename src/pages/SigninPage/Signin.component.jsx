@@ -37,11 +37,11 @@ const Signin = () => (
                             <button className="signin__form--submit signin__form--btn" type="submit"> 
                                 <span style={{marginTop: '4px', marginRight: '5px'}}> <RiLoginBoxLine/> </span> <span>Login</span>  
                             </button>
-                            <button className="signin__form--google signin__form--btn">
-                                <FcGoogle style={{marginTop: '4px', marginRight: '5px'}}/>
-                                Login with Google
-                            </button>
                         </form>
+                        <button className="signin__form--google signin__form--btn">
+                            <FcGoogle style={{marginTop: '4px', marginRight: '5px'}}/>
+                            Login with Google
+                        </button>
                     </div>
                 </div>
             </div>

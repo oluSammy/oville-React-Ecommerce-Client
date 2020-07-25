@@ -1,0 +1,97 @@
+@import '../../sass/abstracts/variable';
+
+.signup {
+    background-image: linear-gradient(to right bottom,rgba(44, 52, 73, 0.342),rgba(53, 42, 73, 0.445)),url(../../assets/img/signin-bg.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+
+    &__bg {
+        background-image: linear-gradient(to right bottom,rgba(57, 57, 59, 0.767),rgba(38, 34, 44, 0.534));
+        width: 30vw;
+        margin: 0 auto;
+        margin-top: 5%;
+        padding: 4rem;
+        border-radius: 2rem;
+    }
+
+    &__box {
+        width:  75%;
+        margin: 0 auto;
+    }
+
+    &__header {
+        margin-bottom: 2rem;
+        margin-left: 2rem;
+
+        &--span {
+            font-size: 1.6rem;
+            color: $color-white;
+            margin-right: 1rem;
+        }
+        &--login {
+            font-size: 2.2rem;
+            color: $color-white;
+            margin-right: 3rem;
+        }
+
+        &--signup {
+            font-size: 1.6rem;
+            color: $color-white;
+        }
+
+    }
+
+    &__form {
+
+        &--group {
+            margin-bottom: 1.5rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        &--icon {
+            font-size: 2rem;
+            margin-right: .4rem;
+            color: $color-dark-red;
+        }
+
+        &--input {
+            width: 100%;
+            padding: 1rem 1rem;
+        }
+
+        &--btn {
+            margin-left: 2.2rem;
+            width: 91%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        &--submit {
+            padding: .5rem;
+            font-size: 1.9rem;
+            font-weight: 700;
+            background-color: $color-primary;
+            color: $color-white;
+            
+
+        }
+
+        &--google {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            font-size: 1.7rem;
+            font-weight: 500;
+            background-color: $color-black;
+            color: $color-white;
+            
+        }
+    }
+
+
+}
