@@ -22,10 +22,10 @@ const NavBar = () => (
             <li className="navbar__list--item">
                 <NavLink to="/signup" className="navbar__list--link">Sign Up</NavLink>
             </li>
-            <li className="navbar__list--item navbar__list--cart-container">
+            <Link to="/cart" className="navbar__list--item navbar__list--cart-container">
                 <AiOutlineShoppingCart className="navbar__list--icon"/>
                 <p className="navbar__list--cart">23</p>
-            </li>
+            </Link>
         </ul>
     </div>
 );

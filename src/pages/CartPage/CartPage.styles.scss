@@ -1,0 +1,68 @@
+@import '../../sass/abstracts/variable';
+@import '../../sass/components/button';
+
+.cart-page {
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 95rem) minmax(2rem, 1fr);
+    grid-row-gap: 1.4rem;
+
+    &__nav {
+        grid-column: 1 / -1;
+    }
+
+    &__items {
+        grid-column: 2 / 3;
+    }
+
+    &__heading {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+
+        font-size: 2.7rem;
+        font-weight: 400;
+    }
+
+    &__total {
+        grid-column: 2 / 3 ;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+
+        & h4 {
+            font-size: 2.2rem;
+            margin-right: 1.5rem;
+        }
+
+        & p {
+            font-size: 2rem;
+            color: $text-color;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-right: 1.2rem;
+        }
+    }
+
+    &__btn {
+        grid-column: 2 / 3 ;
+        display: flex;
+    }
+}
+
+.cart {
+    grid-column: 2 / 3;
+
+    display: grid;
+    grid-template-columns: minmax(min-content, 1.2fr) minmax(min-content, 1fr) minmax(min-content, 1fr) minmax(min-content, 1fr);
+
+    &__heading {
+        font-size: 2rem;
+        text-transform: capitalize;
+        text-align: left;
+        padding-left: 1rem;
+        color: $text-color;
+    }
+
+    &__item {
+        text-align: left;
+        padding-left: 1rem;
+    }
+}
