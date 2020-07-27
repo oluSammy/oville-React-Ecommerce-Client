@@ -1,0 +1,20 @@
+@import '../../sass/abstracts/variable';
+
+.purchase {
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 95rem) minmax(2rem, 1fr);
+
+    &__nav {
+        grid-column: 1 / -1;
+    }
+
+    &__cart {
+        grid-column: 2 / 3;
+        margin-top: 1rem;
+    }
+
+    &__btn {
+        grid-row: 4 / 5;
+        grid-column: 2/ 3;
+    }
+}

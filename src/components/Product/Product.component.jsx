@@ -1,6 +1,7 @@
 import React from 'react';
 import './Product.styles.scss';
 import productImg from '../../assets/img/Acer.png';
+import { Link } from 'react-router-dom';
 
 const Product = () => (
     <div className="product">
@@ -17,7 +18,7 @@ const Product = () => (
                 Lorem ipsum dolor.
             </p>
             <div className="product__btn">
-                <button className="btn-buy">Buy Now</button>
+                <Link to="/purchase" className="btn-buy">Buy Now</Link>
                 <button className="btn-cart">Add To Cart</button>
             </div>
         </div>
