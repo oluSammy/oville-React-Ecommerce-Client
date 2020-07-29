@@ -1,0 +1,27 @@
+@import '../../sass/abstracts/variable';
+
+.search-page {
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 90rem) minmax(2rem, 1fr);
+    grid-row-gap: 3rem;
+
+    &__nav {
+        grid-column: 1 / -1;
+    }
+
+    &__results {
+        grid-column: 2 / 3;
+    }
+
+    &__heading {
+        font-size: 2.3rem;
+        margin-bottom: 1rem;
+        padding: .5rem;
+        color: $text-color;
+    }
+
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 30rem));
+    }
+}
