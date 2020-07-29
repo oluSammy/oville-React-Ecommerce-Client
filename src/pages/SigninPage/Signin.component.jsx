@@ -14,7 +14,7 @@ const Signin = () => (
                 <div className="signin__box">
                     <div className="signin__header">
                         <h2 className="signin__header--login">Log in</h2>
-                        <Link to="/signup" className="signin__header--signup">Create Account</Link>
+                        <Link to="/signup" className="signin__header--signup">New Customer? <span>Create Account</span> </Link>
                     </div>
                     <div className="signin__form">
                         <form action="#">

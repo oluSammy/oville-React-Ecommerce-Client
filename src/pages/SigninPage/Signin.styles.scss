@@ -13,16 +13,39 @@
         margin-top: 5%;
         padding: 4rem;
         border-radius: 2rem;
+
+        @media only screen and (max-width: 1430px) {
+            width: 50vw;
+        }
+
+        @media only screen and (max-width: 726px) {
+            width: 60vw;
+            margin-top: 15%;
+        }
+
+        @media only screen and (max-width: 550px) {
+            width: 70vw;
+        }
+
+        @media only screen and (max-width: 482px) {
+            width: 80vw;
+        }
     }
 
     &__box {
         width:  75%;
         margin: 0 auto;
+
+        @media only screen and (max-width: 550px) {
+            width: 85%;
+        }
+
+        @media only screen and (max-width: 422px) {
+            width: 95%;
+        }
     }
 
     &__header {
-        display: flex;
-        align-items: center;
         margin-bottom: 3rem;
         margin-left: 2rem;
 
@@ -33,8 +56,13 @@
         }
 
         &--signup {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: $color-white;
+            text-decoration: none;
+
+            & span {
+                text-decoration: underline;
+            }
         }
 
     }

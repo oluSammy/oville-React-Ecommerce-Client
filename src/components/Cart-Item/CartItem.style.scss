@@ -16,6 +16,15 @@
         &--image {
             width: 35%; 
             height: 10rem;
+            margin-right: 2rem;
+
+            @media only screen and (max-width: $bp-phone-1) {
+                height: 7rem;
+            }
+
+            @media only screen and (max-width: $bp-phone-2) {
+                height: 4rem;
+            }
 
             & img {
                 width: 100%;

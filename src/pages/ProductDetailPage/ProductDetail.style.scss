@@ -16,6 +16,10 @@
         border-radius: 1rem;
         height: min-content;
 
+        @media only screen and (max-width: $bp-tab) {
+            grid-column: 3 / 4;
+        }
+
         &--container {
             width: 25rem;
             height: 25rem;
@@ -55,6 +59,11 @@
 
     &__reviews {    
         padding: 2rem;
+
+        @media only screen and (max-width: $bp-tab) {
+            grid-row: 3 / 4;
+            grid-column: 3 / 4;
+        }
 
         &--header {
             font-size: 2.3rem;

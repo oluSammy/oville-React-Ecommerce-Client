@@ -9,7 +9,7 @@ const NavBar = () => (
     <div className="navbar navbar__home">
         <Link to="/" className="navbar__logo ">
             <figure className="navbar__logo--icon">
-                <img src={require("../../assets/img/oville.png")} alt="oville logo" className="navbar__logo--icon-img"/>
+                <img src={require("../../assets/img/favicon-96x96.png")} alt="oville logo" className="navbar__logo--icon-img"/>
             </figure>
             <p className="navbar__logo--text">Oville</p>
         </Link>

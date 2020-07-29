@@ -15,13 +15,17 @@
         background-color: $color-white;
         height: min-content;
         padding-bottom: 4rem;
-    }
 
-    // &__feat {
-    //     grid-column: full-start / main-start;
-    // }
+        @media only screen and (max-width: $bp-tab-2) {
+            display: none;
+        }
+    }
 
     &__highlight {
         margin-left: 3rem;
+
+        @media only screen and (max-width: $bp-tab-2) {
+            grid-column: center-start / center-end;
+        }
     }
 }
