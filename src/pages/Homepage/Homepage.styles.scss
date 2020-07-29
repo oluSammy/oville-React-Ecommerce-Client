@@ -6,6 +6,13 @@
     minmax(min-content, 110rem) [main-end] 1fr [center-end] minmax(2rem, 1fr) [full-end];
     grid-row-gap: 3rem;
 
+    @media only screen and (max-width: $bp-tab) {
+        grid-template-columns: [full-start] minmax(1rem, 1fr) [center-start ] minmax(min-content, 20rem) [main-start] 
+        minmax(min-content, 110rem) [main-end] 1fr [center-end] minmax(2rem, 1fr) [full-end];
+        // grid-template-rows: min-content 40vh min-content min-content;
+        grid-row-gap: 1.5rem;
+    }
+
     &__nav {
         grid-column: 1 / -1;
     }
@@ -14,9 +21,30 @@
         grid-column: center-start / main-start;
         background-color: $color-white;
         min-height: 100%;
+
+        @media only screen and (max-width: $bp-tab) {
+            display: none;
+        }
+    }   
+
+    &__carousel {
+
+        @media only screen and (max-width: $bp-tab) {
+            grid-column: center-start / center-end;
+        }
     }
 
     &__featured {
         grid-column: full-start / main-start;
+
+        @media only screen and (max-width: $bp-phone-2) {
+            display: none;
+        }
+    }
+
+    &__market {
+        @media only screen and (max-width: $bp-phone-2) {
+            grid-column: center-start / center-end;
+        }
     }
 }

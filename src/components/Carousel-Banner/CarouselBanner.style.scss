@@ -6,6 +6,10 @@
     position: relative;
     animation: slideshow 1s ease-in-out;
 
+    @media only screen and (max-width: $bp-tab) {
+        margin-left: 0;
+    }
+
     &__img-slide {
         height: 100%;
         max-width: 100%;
@@ -53,4 +57,10 @@
 
 .slider a.previousButton {
     color:  $color-white !important;
+}
+
+.slider {
+    @media only screen and (max-width: $bp-tab) {
+        height: 45vh !important;
+    }
 }

@@ -15,11 +15,15 @@ const HomePage = () => (
         <div className="homepage__category">
             <Category/>
         </div>
-        <CarouselBanner/>
+        <div className="homepage__carousel">
+            <CarouselBanner />
+        </div>
         <div className="homepage__featured">
             <FeaturedProducts/>
         </div>
-        <Market/>
+        <div className="homepage__market">
+            <Market/>
+        </div>
     </div>
 );
 

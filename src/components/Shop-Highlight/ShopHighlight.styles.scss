@@ -17,22 +17,38 @@
     &__name {
         font-size: 2.5rem;
         margin-right: 5%;
+
+        @media only screen and (max-width: $bp-phone-1) {
+            font-size: 1.7rem;
+        }
     }
 
     &__deal {
         margin-right: auto;
         font-size: 1.5rem;
+
+        @media only screen and (max-width: $bp-phone-1) {
+            font-size: 1rem;
+        }
     }
 
     &__link {
         color: $color-white;
         font-size: 2rem;
+
+        @media only screen and (max-width: $bp-phone-1) {
+            font-size: 1.4rem;
+        }
     }
 
     &__arr {
         font-size: 2rem;
         margin-top: 1rem;
         margin-left: .5rem;
+
+        @media only screen and (max-width: $bp-phone-1) {
+            font-size: 1.7rem;
+        }
     }
 
     &__content {
