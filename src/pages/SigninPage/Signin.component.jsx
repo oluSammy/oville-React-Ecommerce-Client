@@ -6,6 +6,7 @@ import NavBar from '../../components/NavBar/Navbar.components';
 
 //react router
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 //react icons
 import { AiOutlineMail } from 'react-icons/ai';
@@ -28,8 +29,8 @@ class Signin extends React.Component {
         console.log(this.state);
         this.setState({ ...this.state, email: '', password: '' });
 
-        const user = await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-        console.log(user);
+        await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+        this.props.history.goBack();
     }
 
     handleChange =  event => {
@@ -85,4 +86,4 @@ class Signin extends React.Component {
     }
 }
 
-export default Signin;
+export default withRouter(Signin);

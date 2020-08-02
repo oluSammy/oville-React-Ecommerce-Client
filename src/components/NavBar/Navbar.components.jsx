@@ -1,11 +1,23 @@
 import React from 'react';
 import './Navbar.styles.scss';
+
+// React icons
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsArrowReturnRight } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+
+//React router
 import { Link, NavLink } from 'react-router-dom';
 
-const NavBar = () => (
+//redux
+import { connect } from 'react-redux';
+import { selectUserSlice } from './../../Redux/user/user.selectors';
+
+//firebase
+import { auth } from './../../firebase/firebase.utils';
+
+
+const NavBar = ({ currentUser }) =>  (
     <div className="navbar navbar__home">
         <Link to="/" className="navbar__logo ">
             <figure className="navbar__logo--icon">
@@ -29,12 +41,26 @@ const NavBar = () => (
                     <NavLink to="/" className="navbar__dropdown--item"><BsArrowReturnRight/> Phones</NavLink>
                 </div>
             </li>
-            <li className="navbar__list--item">
-                <NavLink to="/signin" className="navbar__list--link">Log in</NavLink>    
-            </li>
-            <li className="navbar__list--item">
-                <NavLink to="/signup" className="navbar__list--link">Sign Up</NavLink>
-            </li>
+            {
+                !currentUser ?
+                    <li className="navbar__list--item">
+                        <NavLink to="/signin" className="navbar__list--link">Log in</NavLink>    
+                    </li> :
+                    ''                
+            }
+
+            {
+                !currentUser ? 
+                    <li className="navbar__list--item">
+                        <NavLink to="/signup" className="navbar__list--link">Sign Up</NavLink>
+                    </li> : 
+
+                    <li className="navbar__list--item">
+                        <p onClick={() => auth.signOut()} className="navbar__list--link" style={{cursor: 'pointer'}}>Sign Out</p>
+                    </li>
+            }
+            
+            
             <Link to="/cart" className="navbar__list--item navbar__list--cart-container">
                 <AiOutlineShoppingCart className="navbar__list--icon"/>
                 <p className="navbar__list--cart">23</p>
@@ -43,4 +69,8 @@ const NavBar = () => (
     </div>
 );
 
-export default NavBar;
+const mapStateToProps = state => ({
+    currentUser: selectUserSlice(state)
+})
+
+export default connect(mapStateToProps) (NavBar);
