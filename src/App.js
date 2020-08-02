@@ -11,23 +11,40 @@ import PurchasePage from './pages/PurchasePage/PurchasePage.components';
 import SearchPage from './pages/SearchPage/SearchPage.component';
 
 import { Route, Switch } from 'react-router-dom';
+import { auth } from './firebase/firebase.utils';
+import { setUser } from './Redux/user/user.actions';
+import { connect } from 'react-redux';
 
 
-function App() {
-  return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/product" component={ProductDetailPage} />
-        <Route exact path="/cart" component={CartPage} />
-        <Route exact path="/purchase" component={PurchasePage} />
-        <Route exact path="/search" component={SearchPage} />
-      </Switch>
-    </div>
-  );
+
+class App extends React.Component {
+  
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      this.props.setCurrentUser(user);
+    });
+  }
+  
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/product" component={ProductDetailPage} />
+          <Route exact path="/cart" component={CartPage} />
+          <Route exact path="/purchase" component={PurchasePage} />
+          <Route exact path="/search" component={SearchPage} />
+        </Switch>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setUser(user))
+})
+
+export default connect(null, mapDispatchToProps) (App);
