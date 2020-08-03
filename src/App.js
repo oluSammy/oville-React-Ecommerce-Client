@@ -12,7 +12,7 @@ import PurchasePage from './pages/PurchasePage/PurchasePage.components';
 import SearchPage from './pages/SearchPage/SearchPage.component';
 
 //react router
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 //firebase 
 import { auth } from './firebase/firebase.utils';
@@ -20,7 +20,7 @@ import { auth } from './firebase/firebase.utils';
 //redux
 import { setUser } from './Redux/user/user.actions';
 import { connect } from 'react-redux';
-
+import { selectUserSlice } from './Redux/user/user.selectors';
 
 
 class App extends React.Component {
@@ -37,7 +37,11 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signin" render={
+            () => this.props.currentUser  ?
+              (<Redirect to="/" />) :
+              <Signin/>
+          } />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/product" component={ProductDetailPage} />
           <Route exact path="/cart" component={CartPage} />
@@ -53,4 +57,8 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setUser(user))
 })
 
-export default connect(null, mapDispatchToProps) (App);
+const mapStateToProps = state => ({
+  currentUser: selectUserSlice(state)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (App);

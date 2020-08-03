@@ -70,7 +70,7 @@
     &__form {
 
         &--group {
-            margin-bottom: 1.5rem;
+            // margin-bottom: 1.5rem;
             width: 100%;
             display: flex;
             align-items: center;
@@ -116,6 +116,14 @@
             color: $color-white;
             
         }
+    }
+
+    &__error {
+        margin-bottom: 1.5rem;
+        margin-top: .4rem;
+        font-size: 1.4rem;
+        margin-left: 9%;
+        color: red;
     }
 
 

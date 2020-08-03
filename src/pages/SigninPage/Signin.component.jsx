@@ -12,30 +12,82 @@ import { withRouter } from 'react-router-dom';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine, RiLoginBoxLine } from 'react-icons/ri';
 import { FcGoogle } from 'react-icons/fc';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 //firebase 
-import { auth } from './../../firebase/firebase.utils';
+import { auth, googleProvider } from './../../firebase/firebase.utils';
 
+//sweetalert
+import swal from 'sweetalert';
 
 class Signin extends React.Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        isSigningIn: false,
+        emailError: '',
+        passwordError: ''
     }
 
     handleSubmit = async event => {
         event.preventDefault();
         console.log(this.state);
-        this.setState({ ...this.state, email: '', password: '' });
+        this.setState({ ...this.state, isSigningIn: true, emailError: '', passwordError: '' });
 
-        await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-        this.props.history.goBack();
+        try {
+            await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+            this.setState({ ...this.state, email: '', password: '', isSigningIn: false });
+            this.props.history.goBack();
+
+        } catch (error) {
+            console.log(error);
+            this.setState({ isSigningIn: false });
+
+            if (error.code === 'auth/user-not-found'){
+                this.setState({...this.state, emailError: 'User Not Found'});  
+            } 
+            else if (error.code === 'auth/wrong-password'){
+                this.setState({...this.state, passwordError: 'Incorrect Password'});  
+            } else if (error.code === 'auth/network-request-failed'){
+                swal({
+                    title: "Network Error!",
+                    text: "Check your network connection and try again",
+                    icon: "warning",
+                    button: "ok",
+                });
+            } else {
+                swal({
+                    title: "Error!",
+                    text: "An Error occurred, try again",
+                    icon: "warning",
+                    button: "ok",
+                });
+            }
+        }
     }
 
     handleChange =  event => {
         const { value, name } = event.target;
         this.setState({ [name]: value });        
+    }
+
+    handleGoogleAuth = async () => {
+        try {
+           await auth.signInWithPopup(googleProvider);
+           this.props.history.goBack();
+        } catch (error) {
+            if(error.code === 'auth/network-request-failed') {
+                swal({
+                    title: "Network Error!",
+                    text: "Check your network connection and try again",
+                    icon: "warning",
+                    button: "ok",
+                });
+            }
+            console.log(error);
+        }
     }
 
     render() {
@@ -58,8 +110,10 @@ class Signin extends React.Component {
                                             className="signin__form--input" 
                                             type="email" name="email" id="email" 
                                             placeholder="Email" required 
-                                    />
+                                        />
                                     </div>
+                                    <p className="signin__error">{this.state.emailError}</p>
+
                                     <div className="signin__form--group">
                                         <RiLockPasswordLine className="signin__form--icon"/>
                                         <input 
@@ -67,13 +121,29 @@ class Signin extends React.Component {
                                             className="signin__form--input" 
                                             type="password" name="password" id="password" 
                                             placeholder="Password" required 
-                                    />
+                                        />
                                     </div>
-                                    <button className="signin__form--submit signin__form--btn" type="submit"> 
-                                        <span style={{marginTop: '4px', marginRight: '5px'}}> <RiLoginBoxLine/> </span> <span>Login</span>  
-                                    </button>
+                                    <p className="signin__error">{this.state.passwordError}</p>
+
+                                    {
+                                        !this.state.isSigningIn ? 
+                                            <button className="signin__form--submit signin__form--btn" type="submit"> 
+                                                <span style={{marginTop: '4px', marginRight: '5px'}}> <RiLoginBoxLine/> </span> <span>Login</span>  
+                                            </button> 
+                                        :
+                                            <button className="signin__form--submit signin__form--btn" type="submit"> 
+                                                <span style={{marginRight: '1rem'}}>wait</span> 
+                                                <Loader
+                                                    type="Circles"
+                                                    color="#ffffff"
+                                                    height={15}
+                                                    width={15}
+                                                    timeout={0}                                   
+                                                /> 
+                                            </button>
+                                    }                                    
                                 </form>
-                                <button className="signin__form--google signin__form--btn">
+                                <button className="signin__form--google signin__form--btn" onClick={this.handleGoogleAuth}>
                                     <FcGoogle style={{marginTop: '4px', marginRight: '5px'}}/>
                                     Login with Google
                                 </button>
