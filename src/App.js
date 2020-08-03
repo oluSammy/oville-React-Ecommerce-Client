@@ -21,14 +21,18 @@ import { auth } from './firebase/firebase.utils';
 import { setUser } from './Redux/user/user.actions';
 import { connect } from 'react-redux';
 import { selectUserSlice } from './Redux/user/user.selectors';
+import { asyncGetCategory } from './Redux/category/category.actions';
 
 
 class App extends React.Component {
   
-  componentDidMount() {
+  async componentDidMount() {
+    const { setCurrentUser, getCategories } = this.props;
     auth.onAuthStateChanged(user => {
-      this.props.setCurrentUser(user);
+      setCurrentUser(user);
     });
+
+    await getCategories()
   }
 
   render() {
@@ -63,7 +67,8 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setUser(user))
+  setCurrentUser: user => dispatch(setUser(user)),
+  getCategories: () => dispatch(asyncGetCategory())
 })
 
 const mapStateToProps = state => ({

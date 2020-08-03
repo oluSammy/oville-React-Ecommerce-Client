@@ -1,35 +1,59 @@
 import React from 'react';
 import './Category.style.scss';
 
+import { Link } from 'react-router-dom';
+
 import { BsArrowReturnRight } from 'react-icons/bs';
+import { connect } from 'react-redux';
+import { selectCategorySlice, isGettingCategorySlice } from '../../Redux/category/category.selectors';
 
-const Category = () => (
-    <div className="category">
-        <h2 className="category__heading">Categories</h2>
-        <ul className="category__list">
-            <li>
-            {/* className="category-active" */}
-                <BsArrowReturnRight className="category__icon"/>
-                <a href="goal.com" className="category__list--item">Laptops</a>
-            </li>
-            <li>
-                <BsArrowReturnRight className="category__icon"/>
-                <a href="goal.com" className="category__list--item">Phones</a>
-            </li>
-            <li>
-                <BsArrowReturnRight className="category__icon"/>
-                <a href="goal.com" className="category__list--item">Desktops</a>
-            </li>
-            <li>
-                <BsArrowReturnRight className="category__icon"/>
-                <a href="goal.com" className="category__list--item">Assecories</a>
-            </li>
-            <li>
-                <BsArrowReturnRight className="category__icon"/>
-                <a href="goal.com" className="category__list--item">Network Equip...</a>
-            </li>
-        </ul>
-    </div>
-);
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
-export default Category;
+
+
+class Category extends React.Component {
+
+    render() {
+        const { categorySlice, isGettingCategories } = this.props;
+        return(
+            <div className="category">
+                <h2 className="category__heading">Categories</h2>
+                <ul className="category__list">
+                    {
+                        isGettingCategories ? 
+                            <Loader
+                                type="ThreeDots"
+                                color="#03045e"
+                                height={70}
+                                width={70}
+                                style={{margin: 'auto auto', width: '50%', marginTop: '40%'}}               
+                            />
+                        : categorySlice.map(category => {
+                            return(
+                                <li>                    
+                                    <BsArrowReturnRight className="category__icon"/>
+                                    <Link to="/shop" className="category__list--item">{category.categoryName}</Link>
+                                </li>
+                            )
+                        })
+                    }
+                    {/* <li>
+                        className="category-active" 
+                        <BsArrowReturnRight className="category__icon"/>
+                        <Link href="goal.com" className="category__list--item">Laptops</Link>
+                    </li>
+                    */}
+                </ul>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = state => ({
+    categorySlice: selectCategorySlice(state),
+    isGettingCategories: isGettingCategorySlice(state)
+});
+
+
+export default connect(mapStateToProps) (Category);

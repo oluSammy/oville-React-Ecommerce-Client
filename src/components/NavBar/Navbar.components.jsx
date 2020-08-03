@@ -12,12 +12,13 @@ import { Link, NavLink } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
 import { selectUserSlice } from './../../Redux/user/user.selectors';
+import { selectCategorySlice, isGettingCategorySlice } from './../../Redux/category/category.selectors';
 
 //firebase
 import { auth } from './../../firebase/firebase.utils';
 
 
-const NavBar = ({ currentUser }) =>  (
+const NavBar = ({ currentUser, categories, isGettingCategories }) =>  (
     <div className="navbar navbar__home">
         <Link to="/" className="navbar__logo ">
             <figure className="navbar__logo--icon">
@@ -36,9 +37,16 @@ const NavBar = ({ currentUser }) =>  (
                     <RiArrowDropDownLine className="navbar__dropdown--icon"/> 
                 </p>
                 <div className="navbar__dropdown--content">
-                    <NavLink to="/" className="navbar__dropdown--item"> <BsArrowReturnRight/> Laptops</NavLink>
-                    <NavLink to="/" className="navbar__dropdown--item"><BsArrowReturnRight/> Desktops</NavLink>
-                    <NavLink to="/" className="navbar__dropdown--item"><BsArrowReturnRight/> Phones</NavLink>
+                    {
+                        isGettingCategories ?
+                            <p>Loading</p>
+                        : 
+                            categories.map(category => 
+                                <NavLink to="/shop" className="navbar__dropdown--item"> 
+                                    <BsArrowReturnRight/> {category.categoryName}
+                                </NavLink> 
+                            )
+                    }
                 </div>
             </li>
             {
@@ -70,7 +78,9 @@ const NavBar = ({ currentUser }) =>  (
 );
 
 const mapStateToProps = state => ({
-    currentUser: selectUserSlice(state)
+    currentUser: selectUserSlice(state),
+    categories: selectCategorySlice(state),
+    isGettingCategories: isGettingCategorySlice(state)
 })
 
 export default connect(mapStateToProps) (NavBar);
