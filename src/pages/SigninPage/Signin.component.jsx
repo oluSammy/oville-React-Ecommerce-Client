@@ -5,8 +5,7 @@ import './Signin.styles.scss';
 import NavBar from '../../components/NavBar/Navbar.components';
 
 //react router
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 //react icons
 import { AiOutlineMail } from 'react-icons/ai';
@@ -33,7 +32,6 @@ class Signin extends React.Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        console.log(this.state);
         this.setState({ ...this.state, isSigningIn: true, emailError: '', passwordError: '' });
 
         try {
@@ -131,7 +129,7 @@ class Signin extends React.Component {
                                                 <span style={{marginTop: '4px', marginRight: '5px'}}> <RiLoginBoxLine/> </span> <span>Login</span>  
                                             </button> 
                                         :
-                                            <button className="signin__form--submit signin__form--btn" type="submit"> 
+                                            <button className="signin__form--submit signin__form--btn" type="submit" disabled> 
                                                 <span style={{marginRight: '1rem'}}>wait</span> 
                                                 <Loader
                                                     type="Circles"
