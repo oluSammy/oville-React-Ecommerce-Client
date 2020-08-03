@@ -35,14 +35,14 @@ class Signin extends React.Component {
         this.setState({ ...this.state, isSigningIn: true, emailError: '', passwordError: '' });
 
         try {
-            await auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+            await auth.signInWithEmailAndPassword(this.state.email, this.state.password); // signin
             this.setState({ ...this.state, email: '', password: '', isSigningIn: false });
-            this.props.history.goBack();
+            this.props.history.goBack();    //back to previous page after signin
 
         } catch (error) {
-            console.log(error);
             this.setState({ isSigningIn: false });
 
+            //handle errors
             if (error.code === 'auth/user-not-found'){
                 this.setState({...this.state, emailError: 'User Not Found'});  
             } 

@@ -22,6 +22,7 @@ import { auth, firestore } from '../../firebase/firebase.utils';
 
 
 class SignUp extends React.Component {
+
     state = {
         name: '',
         email: '',
@@ -41,26 +42,35 @@ class SignUp extends React.Component {
     handleSubmit = async (event) => {
 
         event.preventDefault();
+
         this.setState({ ...this.state, emailError: '', passwordError: '', confirmPassError: '' })
         const { email, password, confirmPass, name } = this.state;
 
+        
         if(password !== confirmPass) {
             this.setState({...this.state, confirmPassError: "Passwords do not match"})
             return;
         } else {
+
             try {
-                this.setState({ ...this.state, isCreatingNewUser: true });
+                this.setState({ ...this.state, isCreatingNewUser: true });  
+                
+                //creates user
                 const newUser = await auth.createUserWithEmailAndPassword(email, password);
                 this.setState({ ...this.state, isCreatingNewUser: false });
-                console.log(newUser.user.uid)
+
+                //stores user document in database
                 await firestore.collection('users').doc(`${newUser.user.uid}`).set({
                     name,
                     email,
                     password
                 });
-                this.props.history.goBack();
+                this.props.history.goBack();    // returns to previous page after signup
+
             } catch (error) {
                 this.setState({ ...this.state, isCreatingNewUser: false });
+
+                //handle errors
                 if(error.code === 'auth/weak-password'){
                     this.setState({...this.state, passwordError: 'Password should be at least 6 characters'});
                 } else if (error.code === 'auth/email-already-in-use') {
@@ -80,10 +90,8 @@ class SignUp extends React.Component {
                         button: "ok",
                     });
                 }
-                console.log(error);
             }
         }
-        console.log(this.state);
     }
 
     render() {
@@ -140,6 +148,7 @@ class SignUp extends React.Component {
                                     <p className="signup__error">{this.state.confirmPassError}</p>
 
                                     {
+                                        //render button depending on the signup state
                                         !this.state.isCreatingNewUser ? 
                                             <button className="signup__form--submit signup__form--btn" type="submit"> 
                                                 <span style={{marginTop: '4px', marginRight: '5px'}}> <RiLoginBoxLine/> </span> <span>Sign Up</span>  
