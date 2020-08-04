@@ -16,7 +16,8 @@ class Category extends React.Component {
 
     render() {
         const { categorySlice, isGettingCategories } = this.props;
-        return(
+        
+        return (
             <div className="category">
                 <h2 className="category__heading">Categories</h2>
                 <ul className="category__list">
@@ -31,19 +32,13 @@ class Category extends React.Component {
                             />
                         : categorySlice.map(category => {
                             return(
-                                <li>                    
+                                <li key={category.categoryName}>                    
                                     <BsArrowReturnRight className="category__icon"/>
                                     <Link to="/shop" className="category__list--item">{category.categoryName}</Link>
                                 </li>
                             )
                         })
                     }
-                    {/* <li>
-                        className="category-active" 
-                        <BsArrowReturnRight className="category__icon"/>
-                        <Link href="goal.com" className="category__list--item">Laptops</Link>
-                    </li>
-                    */}
                 </ul>
             </div>
         )

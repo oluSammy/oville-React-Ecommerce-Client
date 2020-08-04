@@ -17,6 +17,7 @@
     &__name {
         font-size: 2.5rem;
         margin-right: 5%;
+        text-transform: capitalize;
 
         @media only screen and (max-width: $bp-phone-1) {
             font-size: 1.7rem;

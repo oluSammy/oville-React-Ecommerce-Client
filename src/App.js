@@ -24,6 +24,7 @@ import { selectUserSlice } from './Redux/user/user.selectors';
 import { asyncGetCategory } from './Redux/category/category.actions';
 
 
+
 class App extends React.Component {
   
   async componentDidMount() {
