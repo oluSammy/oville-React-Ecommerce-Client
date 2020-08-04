@@ -28,7 +28,7 @@ class CarouselBanner extends React.Component {
                             <div className="carousel-banner__content">
                                 <h1 className="carousel-banner__heading">{item.title}</h1>
                                 <p className="carousel-banner__slogan">{item.description}</p>
-                                <Link to="/shop" className="carousel-banner__btn">{item.button}</Link>
+                                <Link to={`/shop/${item.title.toLowerCase()}`} className="carousel-banner__btn">{item.button}</Link>
                             </div>
                         </div>
                     ))}

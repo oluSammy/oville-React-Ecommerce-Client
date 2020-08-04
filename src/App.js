@@ -23,8 +23,6 @@ import { connect } from 'react-redux';
 import { selectUserSlice } from './Redux/user/user.selectors';
 import { asyncGetCategory } from './Redux/category/category.actions';
 
-
-
 class App extends React.Component {
   
   async componentDidMount() {
@@ -41,7 +39,7 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/shop/:id" component={ShopPage} />
 
           {/* //redirects to home if user is signed in */}
           <Route exact path="/signin" render={

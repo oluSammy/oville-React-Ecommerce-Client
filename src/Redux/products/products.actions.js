@@ -1,4 +1,5 @@
 import { firestore } from '../../firebase/firebase.utils';
+import { swal } from 'sweetalert';
 const { productsActionTypes } = require("./products.types");
 
 // import 
@@ -48,7 +49,13 @@ export const asyncGetProductsHighlights = () => {
 
             dispatch(getProductHighlightsSuccess(highlights));
         } catch (error) {
-            dispatch(getProductHighlightsFailure(error));
+            dispatch(getProductHighlightsFailure(error));            
+                swal({
+                    title: "Error!",
+                    text: "An Error occurred, try again",
+                    icon: "warning",
+                    button: "ok",
+                });
         }
     }
 }
