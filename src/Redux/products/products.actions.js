@@ -18,6 +18,8 @@ const getProductHighlightsFailure = error => ({
     payload: error
 });
 
+
+
 export const asyncGetProductsHighlights = () => {
     return async dispatch => {
         try {
@@ -56,6 +58,48 @@ export const asyncGetProductsHighlights = () => {
                     icon: "warning",
                     button: "ok",
                 });
+        }
+    }
+}
+
+const getShopProductsStart = () => ({
+    type: productsActionTypes.GET_SHOP_PRODUCTS_START
+});
+
+const getShopProductsSuccess = (shopProducts) => ({
+    type: productsActionTypes.GET_SHOP_PRODUCTS_SUCCESS,
+    payload: shopProducts
+});
+
+const getShopProductsFailure = (error) => ({
+    type: productsActionTypes.GET_SHOP_PRODUCTS_FAILURE,
+    payload: error
+});
+
+export const asyncGetShopProducts = (shopId) => {
+    return async dispatch => {
+        try {
+            dispatch(getShopProductsStart());
+            const productsRef = firestore.collection('products');
+            
+            const shopProducts = [];
+            const products = await productsRef.where('category', '==', shopId).get();
+            
+            products.docs.forEach(doc => {
+                shopProducts.push({ id: doc.id, data: doc.data() });
+            });
+
+            dispatch(getShopProductsSuccess(shopProducts));
+
+        } catch (error) {
+            dispatch(getShopProductsFailure(error));
+
+            swal({
+                title: "Error!",
+                text: "An Error occurred, try again",
+                icon: "warning",
+                button: "ok",
+            });
         }
     }
 }

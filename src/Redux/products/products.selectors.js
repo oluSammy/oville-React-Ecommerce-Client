@@ -11,3 +11,13 @@ export const selectIsGettingHighlights = createSelector(
     [selectProducts],
     products => products.isGettingProductHighLights
 );
+
+export const selectShopProductsSlice = createSelector(
+    [selectProducts],
+    products => products.shopProducts
+);
+
+export const selectIsGettingShopProducts = createSelector(
+    [selectProducts],
+    products => products.isGettingShopProducts
+)

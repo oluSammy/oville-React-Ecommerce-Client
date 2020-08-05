@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+import './App.scss';  
 
 //UI page components
 import HomePage from './pages/Homepage/Homepage.component';
@@ -41,21 +41,21 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop/:id" component={ShopPage} />
 
-          {/* //redirects to home if user is signed in */}
+          {/* redirects to home if user is signed in */}
           <Route exact path="/signin" render={
             () => this.props.currentUser  ?
               (<Redirect to="/" />) :
               <Signin/>
           } />
 
-          {/* //redirects to home if user is signed in */}
+          {/* redirects to home if user is signed in */}
          <Route exact path="/SignUp" render={
             () => this.props.currentUser  ?
               (<Redirect to="/" />) :
               <SignUp/>
           } />
           
-          <Route exact path="/product" component={ProductDetailPage} />
+          <Route exact path="/product/:id" component={ProductDetailPage} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/purchase" component={PurchasePage} />
           <Route exact path="/search" component={SearchPage} />

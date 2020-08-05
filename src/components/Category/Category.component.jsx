@@ -34,7 +34,9 @@ class Category extends React.Component {
                             return(
                                 <li key={category.categoryName}>                    
                                     <BsArrowReturnRight className="category__icon"/>
-                                    <Link to="/shop" className="category__list--item">{category.categoryName}</Link>
+                                    <Link to={`/shop/${category.categoryName}`} className="category__list--item">
+                                        {category.categoryName}
+                                    </Link>
                                 </li>
                             )
                         })

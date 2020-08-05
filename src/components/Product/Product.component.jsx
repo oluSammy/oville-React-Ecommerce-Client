@@ -1,10 +1,11 @@
 import React from 'react';
 import './Product.styles.scss';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const Product = ({ productId, productData: { productName, imgUrl, price, description} }) => (
+
+const Product = ({ productId, productData: { productName, imgUrl, price, description}, history }) => (
     <div className="product">
-        <div className="product__top">
+        <div className="product__top" onClick={()=>history.push(`/product/${productId}`)}>
             <figure className="product__img-container">
                 <img src={imgUrl} alt="Acer" className="product__img"/>
             </figure>
@@ -37,4 +38,4 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export default Product;
+export default withRouter(Product);

@@ -3,7 +3,10 @@ import { productsActionTypes } from './products.types';
 const INIT_STATE = {
     isGettingProductHighLights: false,
     productHighlights: null,
-    getProductHighlightsError: ''
+    getProductHighlightsError: '',
+    isGettingShopProducts: false,
+    shopProducts: null,
+    getShopProductsError: ''
 };
 
 const productsReducer = (state = INIT_STATE, action) => {
@@ -24,6 +27,23 @@ const productsReducer = (state = INIT_STATE, action) => {
                 ...state,
                 isGettingProductHighLights: false,
                 getProductHighlightsError: action.payload
+            }
+        case productsActionTypes.GET_SHOP_PRODUCTS_START:
+            return {
+                ...state,
+                isGettingShopProducts: true,
+            }
+        case productsActionTypes.GET_SHOP_PRODUCTS_SUCCESS: 
+            return {
+                ...state,
+                isGettingShopProducts: false,
+                shopProducts: action.payload
+            }
+        case productsActionTypes.GET_SHOP_PRODUCTS_FAILURE:
+            return {
+                ...state,
+                isGettingShopProducts: false,
+                getShopProductsError: action.payload
             }
         default:
             return state;

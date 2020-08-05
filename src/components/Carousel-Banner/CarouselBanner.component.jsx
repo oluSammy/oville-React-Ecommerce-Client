@@ -14,9 +14,9 @@ class CarouselBanner extends React.Component {
     
     render() {
         const carousels = [
-            {title: "laptops...", description: "Portable & Cheap! Up to 35% off ", button: "Shop Now", index: 1, src: laptopBg},
-            {title: "Desktop", description: "Portable & Cheap! Up to 25% off ", button: "Shop Now", index: 2, src: desktopBg},
-            {title: "Phones", description: "Portable & Cheap! Up to 15% off ", button: "Shop Now", index: 3, src: phoneBg},
+            {title: "laptops", description: "Portable & Cheap! Up to 35% off ", button: "Shop Now", index: 1, src: laptopBg},
+            {title: "desktops", description: "Portable & Cheap! Up to 25% off ", button: "Shop Now", index: 2, src: desktopBg},
+            {title: "phones", description: "Portable & Cheap! Up to 15% off ", button: "Shop Now", index: 3, src: phoneBg},
         ]
         return(
             <div className="carousel-banner">
