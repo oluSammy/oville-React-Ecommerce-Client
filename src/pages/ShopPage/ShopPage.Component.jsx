@@ -19,14 +19,12 @@ class ShopPage extends React.Component {
     async componentDidMount() {
         const { getShopProducts, match: { params: { id } } } = this.props;
         await getShopProducts(id);
-        console.log(id);
     }
 
     async componentDidUpdate(prevProps) {
         const { getShopProducts, match: { params: { id } } } = this.props;
         if(id !== prevProps.match.params.id) {
             await getShopProducts(id);
-            console.log(id);
         }
     }
 
@@ -72,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
     getShopProducts: shopId => dispatch(asyncGetShopProducts(shopId))
 })
 
-export default withRouter(connect
-    (mapStateToProps, mapDispatchToProps)
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)
     (ShopPage)
 );

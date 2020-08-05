@@ -1,6 +1,9 @@
 import React from 'react';
 import './Product.styles.scss';
 import { Link, withRouter } from 'react-router-dom';
+import { limitSentence, numberWithCommas } from './../../utility-functions/utilityFunctions';
+
+
 
 
 const Product = ({ productId, productData: { productName, imgUrl, price, description}, history }) => (
@@ -26,16 +29,5 @@ const Product = ({ productId, productData: { productName, imgUrl, price, descrip
     </div>
 );
 
-const limitSentence = (sentence) => {
-    const words = sentence.split(" ");
-
-    if(words.length > 16 )
-        return `${words.slice(0, 15).join(" ")}...`;
-    return sentence;
-}
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 export default withRouter(Product);
