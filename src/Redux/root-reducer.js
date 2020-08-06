@@ -6,6 +6,7 @@ import userReducer from './user/user.reducer';
 import categoryReducer from './category/category.reducer';
 import productsReducer from './products/products.reducer';
 import productDetailReducer from './ProductDetail/product-detail.reducer';
+import ReviewReducer from './Reviews/Reviews.reducer';
 
 
 const persistConfig = {
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     category: categoryReducer,
     products: productsReducer,
-    productDetail: productDetailReducer
+    productDetail: productDetailReducer,
+    reviews: ReviewReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

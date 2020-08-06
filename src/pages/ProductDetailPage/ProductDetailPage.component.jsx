@@ -11,19 +11,39 @@ import { isGettingProductDetailSlice, selectProductDetailSlice } from '../../Red
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
-
+import { asyncAddReview, asyncGetReviews } from '../../Redux/Reviews/Reiews.actions';
+import { selectIsAddingReviewsSlice, selectIsGettingReviews, selectReviewsSlice, selectIsReviewsEmpty } from '../../Redux/Reviews/Reviews.selectors';
 
 
 class ProductDetailPage extends React.Component {
 
+    state = {
+        review: ''
+    }
+
+    handleSubmit = async e => {
+        e.preventDefault();
+        const { match:{ params: { id } }, addReview } = this.props;
+        await addReview(id, this.state.review);
+        this.setState({ review: '' });
+    }
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
     async componentDidMount() {
-        const {  match:{ params: { id } }, getProductDetail } = this.props;
+        const {  match:{ params: { id } }, getProductDetail, getReviews } = this.props;
         await getProductDetail(id);
+        await getReviews(id);
     }
 
     render() {
-        const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description } } = this.props;
-        
+        const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, 
+                isAddingReview, isGettingReviews, reviews, isReviewsEmpty } = this.props;
+        const duplicate = [];
+            
         return (
             <div className="product-detail">
                 <div className="product-detail__nav">
@@ -73,16 +93,46 @@ class ProductDetailPage extends React.Component {
                 <div className="product-detail__reviews">
                     <h3 className="product-detail__reviews--header">Reviews</h3>
                     <div className="review-container">
-                        <Review/>
-                        <Review/>
+                        <div>
+                            { 
+                                isGettingReviews ?                                   
+                                    <Loader
+                                        type="ThreeDots"
+                                        color="#03045e"
+                                        height={30}
+                                        width={30}
+                                        style={{marginTop: '1.5rem', marginLeft: '20%'}} 
+                                    />
+                                :
+                                    isReviewsEmpty ?
+                                    <p style={{fontSize: '1.4rem'}}>No Reviews Yet</p> :
+                                    reviews.map(review => 
+                                        <Review key={review.createdAt} review={review.review} createdAt={review.createdAt}/>
+                                    )
+                            }                            
+                        </div>
                     </div>
                     <div className="product-detail__add">
-                        <form action="#" className="review__form">
-                            <textarea 
+                        <form className="review__form" onSubmit={this.handleSubmit}>
+                            <textarea onChange={this.handleChange} value={this.state.review}
                                 name="review" id="review" cols="50" rows="4" placeholder="Add Review" 
                                 className="review__form--input" required>
                             </textarea>
-                            <button type="submit" className="review__submit btn-buy">Add Review</button>
+                            <div style={{display: 'flex', alignItems: 'center'}}>
+                                {
+                                    isAddingReview ? 
+                                        <Loader
+                                            type="Oval"
+                                            color="#03045e"
+                                            height={20}
+                                            width={20}
+                                            style={{marginTop: '1.5rem', marginRight: '1.5rem'}} 
+                                        /> :
+                                    ''
+
+                                }
+                                <button type="submit" className="review__submit btn-buy" disabled={isAddingReview}>Add Review</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -93,11 +143,18 @@ class ProductDetailPage extends React.Component {
 
 const mapStateToProps = state =>  ({
     isGettingProductDetail: isGettingProductDetailSlice(state),
-    productDetail: selectProductDetailSlice(state)
+    productDetail: selectProductDetailSlice(state),
+    isAddingReview: selectIsAddingReviewsSlice(state),
+    isGettingReviews: selectIsGettingReviews(state),
+    reviews: selectReviewsSlice(state),
+    isReviewsEmpty: selectIsReviewsEmpty(state)
+
 });
 
 const mapDispatchToProps = dispatch => ({
-    getProductDetail: productId => dispatch(asyncGetProductDetail(productId))
+    getProductDetail: productId => dispatch(asyncGetProductDetail(productId)),
+    addReview: (productId, review) => dispatch(asyncAddReview(productId, review)),
+    getReviews: (productId) => dispatch(asyncGetReviews(productId))
 });
 
 
