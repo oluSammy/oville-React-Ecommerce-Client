@@ -3,7 +3,6 @@ import './Market.styles.scss';
 
 import ShopHighlight from '../Shop-Highlight/ShopHighlight.component';
 import { connect } from 'react-redux';
-import { asyncGetProductsHighlights } from './../../Redux/products/products.actions';
 import { selectProductHighlightsSlice, selectIsGettingHighlights } from './../../Redux/products/products.selectors';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -12,11 +11,7 @@ import Loader from 'react-loader-spinner';
 
 
 class Market extends React.Component {
-
-    async componentDidMount() {
-        await this.props.getHighlights();
-    }
-
+    
     render() {
         const { isGettingHighlights, productHighlights } = this.props;
         
@@ -48,8 +43,5 @@ const mapStateToProps = state => ({
     productHighlights: selectProductHighlightsSlice(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-    getHighlights: () => dispatch(asyncGetProductsHighlights())
-})
 
-export default connect(mapStateToProps, mapDispatchToProps) (Market);
+export default connect(mapStateToProps) (Market);

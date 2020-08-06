@@ -22,15 +22,17 @@ import { setUser } from './Redux/user/user.actions';
 import { connect } from 'react-redux';
 import { selectUserSlice } from './Redux/user/user.selectors';
 import { asyncGetCategory } from './Redux/category/category.actions';
+import { asyncGetProductsHighlights } from './Redux/products/products.actions';
+
 
 class App extends React.Component {
   
   async componentDidMount() {
-    const { setCurrentUser, getCategories } = this.props;
+    const { setCurrentUser, getCategories, getHighlights } = this.props;
     auth.onAuthStateChanged(user => {
       setCurrentUser(user);
     });
-
+    await getHighlights();
     await getCategories()
   }
 
@@ -67,7 +69,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setUser(user)),
-  getCategories: () => dispatch(asyncGetCategory())
+  getCategories: () => dispatch(asyncGetCategory()),
+  getHighlights: () => dispatch(asyncGetProductsHighlights())
 })
 
 const mapStateToProps = state => ({

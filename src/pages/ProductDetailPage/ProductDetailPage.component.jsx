@@ -42,7 +42,6 @@ class ProductDetailPage extends React.Component {
     render() {
         const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, 
                 isAddingReview, isGettingReviews, reviews, isReviewsEmpty } = this.props;
-        const duplicate = [];
             
         return (
             <div className="product-detail">
@@ -91,7 +90,10 @@ class ProductDetailPage extends React.Component {
                     }
                 </div>
                 <div className="product-detail__reviews">
-                    <h3 className="product-detail__reviews--header">Reviews</h3>
+                    <div style={{display: 'flex', alignItems:'center'}}>
+                        <h3 className="product-detail__reviews--header">Reviews</h3> 
+                        <a href="#add-review" className="product-detail__reviews--add">Add Review</a>
+                    </div>
                     <div className="review-container">
                         <div>
                             { 
@@ -113,7 +115,7 @@ class ProductDetailPage extends React.Component {
                         </div>
                     </div>
                     <div className="product-detail__add">
-                        <form className="review__form" onSubmit={this.handleSubmit}>
+                        <form className="review__form" onSubmit={this.handleSubmit} id="add-review">
                             <textarea onChange={this.handleChange} value={this.state.review}
                                 name="review" id="review" cols="50" rows="4" placeholder="Add Review" 
                                 className="review__form--input" required>
