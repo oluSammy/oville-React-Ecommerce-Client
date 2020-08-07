@@ -33,7 +33,7 @@ class App extends React.Component {
       setCurrentUser(user);
     });
     await getHighlights();
-    await getCategories()
+    await getCategories();
   }
 
   render() {
@@ -59,7 +59,7 @@ class App extends React.Component {
           
           <Route exact path="/product/:id" component={ProductDetailPage} />
           <Route exact path="/cart" component={CartPage} />
-          <Route exact path="/purchase" component={PurchasePage} />
+          <Route exact path="/purchase/:id" component={PurchasePage} />
           <Route exact path="/search" component={SearchPage} />
         </Switch>
       </div>

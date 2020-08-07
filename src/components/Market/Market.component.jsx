@@ -29,9 +29,9 @@ class Market extends React.Component {
                             />
                         </div>
                     :
-                    productHighlights.map(
+                     productHighlights ?  productHighlights.map(
                         highlight => <ShopHighlight key={highlight.category} category={highlight.category} products={highlight.products}/>
-                    )
+                    ) : ''
                 }
             </div>
         );

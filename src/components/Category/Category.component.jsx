@@ -12,6 +12,7 @@ import Loader from 'react-loader-spinner';
 
 
 
+
 class Category extends React.Component {
 
     render() {
@@ -30,7 +31,7 @@ class Category extends React.Component {
                                 width={70}
                                 style={{margin: 'auto auto', width: '50%', marginTop: '40%'}}               
                             />
-                        : categorySlice.map(category => {
+                        :  categorySlice ? categorySlice.map(category => {
                             return(
                                 <li key={category.categoryName}>                    
                                     <BsArrowReturnRight className="category__icon"/>
@@ -39,7 +40,7 @@ class Category extends React.Component {
                                     </Link>
                                 </li>
                             )
-                        })
+                        }) : ''
                     }
                 </ul>
             </div>

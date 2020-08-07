@@ -41,7 +41,7 @@ class ProductDetailPage extends React.Component {
 
     render() {
         const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, 
-                isAddingReview, isGettingReviews, reviews, isReviewsEmpty } = this.props;
+                isAddingReview, isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } } } = this.props;
             
         return (
             <div className="product-detail">
@@ -62,7 +62,7 @@ class ProductDetailPage extends React.Component {
                                 <figure className="product-detail__image--container">
                                     <img src={imgUrl} alt="product" className="product-detail__img"/>
                                 </figure>
-                                <button className="btn-buy">Buy Now</button>
+                                <button onClick={()=>history.push(`/purchase/${id}`)} className="btn-buy">Buy Now</button>
                                 <button className="btn-cart">Add To Cart</button>
                             </div>
 

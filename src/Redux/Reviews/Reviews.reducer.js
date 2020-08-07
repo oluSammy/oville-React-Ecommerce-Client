@@ -10,7 +10,7 @@ const INIT_STATE = {
 }
 
 const ReviewReducer = (state = INIT_STATE, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case reviewsActionTypes.GET_REVIEWS_START:
             return {
                 ...state,

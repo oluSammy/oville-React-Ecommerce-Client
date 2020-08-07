@@ -51,8 +51,8 @@ class ShopPage extends React.Component {
                                         
                                 />
                             </div>
-                        :
-                        <ShopHighlight category={id} products={shopProducts} isShopPage={true}/>
+                        : shopProducts ?
+                        <ShopHighlight category={id} products={shopProducts} isShopPage={true}/> : ''
                         
                     }
                 </div>

@@ -41,11 +41,11 @@ const NavBar = ({ currentUser, categories, isGettingCategories }) =>  (
                         isGettingCategories ?
                             <p>Loading</p>
                         : 
-                            categories.map(category => 
+                        categories ? categories.map(category => 
                                 <NavLink to={`/shop/${category.categoryName}`} className="navbar__dropdown--item" key={category.categoryName}> 
                                     <BsArrowReturnRight/> {category.categoryName}
                                 </NavLink> 
-                            )
+                            ) : ''
                     }
                 </div>
             </li>

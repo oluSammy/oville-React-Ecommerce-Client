@@ -22,7 +22,7 @@ const Product = ({ productId, productData: { productName, imgUrl, price, descrip
                 }
             </p>
             <div className="product__btn">
-                <Link to="/purchase" className="btn-buy">Buy Now</Link>
+                <Link to={`/purchase/${productId}`} className="btn-buy">Buy Now</Link>
                 <button className="btn-cart">Add To Cart</button>
             </div>
         </div>
