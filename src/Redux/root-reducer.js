@@ -8,12 +8,13 @@ import productsReducer from './products/products.reducer';
 import productDetailReducer from './ProductDetail/product-detail.reducer';
 import ReviewReducer from './Reviews/Reviews.reducer';
 import purchaseItemReducer from './Purchase-Item/purchaseItem.reducer';
+import { cartReducer } from './Cart/cart.reducer';
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['category', 'products']
+    whitelist: ['category', 'products', 'cart']
 }
 
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     products: productsReducer,
     productDetail: productDetailReducer,
     reviews: ReviewReducer,
-    purchaseItem: purchaseItemReducer
+    purchaseItem: purchaseItemReducer,
+    cart: cartReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

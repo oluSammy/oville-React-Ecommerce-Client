@@ -12,7 +12,9 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
 import { asyncAddReview, asyncGetReviews } from '../../Redux/Reviews/Reiews.actions';
-import { selectIsAddingReviewsSlice, selectIsGettingReviews, selectReviewsSlice, selectIsReviewsEmpty } from '../../Redux/Reviews/Reviews.selectors';
+import { selectIsAddingReviewsSlice, selectIsGettingReviews, selectReviewsSlice, selectIsReviewsEmpty } 
+from '../../Redux/Reviews/Reviews.selectors';
+import { addCartItem } from './../../Redux/Cart/cart.actions';
 
 
 class ProductDetailPage extends React.Component {
@@ -40,8 +42,9 @@ class ProductDetailPage extends React.Component {
     }
 
     render() {
-        const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, 
-                isAddingReview, isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } } } = this.props;
+        const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, isAddingReview, 
+                isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } }, addItem } = this.props;
+        const productData = { imgUrl, id, price, productName, subTotal: price }
             
         return (
             <div className="product-detail">
@@ -63,7 +66,7 @@ class ProductDetailPage extends React.Component {
                                     <img src={imgUrl} alt="product" className="product-detail__img"/>
                                 </figure>
                                 <button onClick={()=>history.push(`/purchase/${id}`)} className="btn-buy">Buy Now</button>
-                                <button className="btn-cart">Add To Cart</button>
+                                <button className="btn-cart" onClick={() => addItem(productData)}>Add To Cart</button>
                             </div>
 
                     }
@@ -156,7 +159,8 @@ const mapStateToProps = state =>  ({
 const mapDispatchToProps = dispatch => ({
     getProductDetail: productId => dispatch(asyncGetProductDetail(productId)),
     addReview: (productId, review) => dispatch(asyncAddReview(productId, review)),
-    getReviews: (productId) => dispatch(asyncGetReviews(productId))
+    getReviews: (productId) => dispatch(asyncGetReviews(productId)),
+    addItem: item => dispatch(addCartItem(item))
 });
 
 

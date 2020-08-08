@@ -13,12 +13,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectUserSlice } from './../../Redux/user/user.selectors';
 import { selectCategorySlice, isGettingCategorySlice } from './../../Redux/category/category.selectors';
+import { selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 
 //firebase
 import { auth } from './../../firebase/firebase.utils';
 
 
-const NavBar = ({ currentUser, categories, isGettingCategories }) =>  (
+const NavBar = ({ currentUser, categories, isGettingCategories, cartCount }) =>  (
     <div className="navbar navbar__home">
         <Link to="/" className="navbar__logo ">
             <figure className="navbar__logo--icon">
@@ -71,7 +72,7 @@ const NavBar = ({ currentUser, categories, isGettingCategories }) =>  (
             
             <Link to="/cart" className="navbar__list--item navbar__list--cart-container">
                 <AiOutlineShoppingCart className="navbar__list--icon"/>
-                <p className="navbar__list--cart">23</p>
+                <p className="navbar__list--cart">{cartCount}</p>
             </Link>
         </ul>
     </div>
@@ -80,7 +81,8 @@ const NavBar = ({ currentUser, categories, isGettingCategories }) =>  (
 const mapStateToProps = state => ({
     currentUser: selectUserSlice(state),
     categories: selectCategorySlice(state),
-    isGettingCategories: isGettingCategorySlice(state)
+    isGettingCategories: isGettingCategorySlice(state),
+    cartCount: selectCartItemsCount(state)
 })
 
 export default connect(mapStateToProps) (NavBar);

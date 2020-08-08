@@ -6,22 +6,38 @@ import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
 
 
-const CartItem = ({ name, image, quantity, price, totalPrice, decrement, increment }) => (
-    <div className="cart-item">
-        <div className="cart-item__item">
-            <figure className="cart-item__item--image">
-                <img src={image} alt="item"/>
-            </figure>
-            <h4 className="cart-item__item--name">{name}</h4>
+const CartItem = ({ name, image, quantity, price, totalPrice, decrement, increment, cartTotalPrice, 
+    cartPrice, purchase, addItem, id, removeItem, reduceItem }) => {
+    const productData = { imgUrl: image, id, price, productName: name, quantity, subTotal: cartTotalPrice}
+    return(
+        <div className="cart-item">
+            <div className="cart-item__item">
+                <figure className="cart-item__item--image">
+                    <img src={image} alt="item"/>
+                </figure>
+                <h4 className="cart-item__item--name">{name}</h4>
+            </div>
+            <div className="cart-item__quantity">
+                <AiOutlineMinusCircle className="cart-item__quantity--icon cart-item__quantity--minus" 
+                    onClick={()=> purchase ? decrement() : reduceItem(productData)}
+                />
+                <p>{quantity}</p>
+                <BsPlusCircle className="cart-item__quantity--icon cart-item__quantity--plus" 
+                    onClick={()=>  purchase ? increment() : addItem(productData)} 
+                />
+            </div>
+            <p className="cart-item__price">&#8358; { purchase ? numberWithCommas(price) : numberWithCommas(cartPrice)}</p>
+            <p className="cart-item__price">&#8358; {  purchase ? numberWithCommas(totalPrice) : numberWithCommas(cartTotalPrice)}</p>
+            {
+                purchase ? ''
+            :       <div className="cart-item__cancel" onClick={() => removeItem(id)}>
+                        <span>X</span>
+                    </div>
+            
+            }
+            {/* <span className="cart-" >X</span>         */}
         </div>
-        <div className="cart-item__quantity">
-            <AiOutlineMinusCircle className="cart-item__quantity--icon cart-item__quantity--minus" onClick={()=> decrement()}/>
-            <p>{quantity}</p>
-            <BsPlusCircle className="cart-item__quantity--icon cart-item__quantity--plus" onClick={()=> increment()} />
-        </div>
-        <p className="cart-item__price">&#8358; {numberWithCommas(price)}</p>
-        <p className="cart-item__price">&#8358; {numberWithCommas(totalPrice)}</p>
-    </div>
-);
+    )
+} ;
 
 export default CartItem;

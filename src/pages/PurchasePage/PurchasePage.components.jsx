@@ -7,7 +7,10 @@ import { asyncGetPurchaseItem, IncrementPurchaseItem, decrementPurchaseItem } fr
 import { withRouter } from 'react-router-dom';
 
 import { isGettingPurchaseItem, selectPurchaseItemSlice, selectPurchaseQuantitySlice, selectUnitPrice, selectTotalPrice } 
-from '../../Redux/Purchase-Item/purchaseItem.selectors'
+from '../../Redux/Purchase-Item/purchaseItem.selectors';
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 
 class PurchasePage extends React.Component {
@@ -35,11 +38,19 @@ class PurchasePage extends React.Component {
                 <div className="purchase__cart">
                     {
                         isGettingItems ? 
-                            'loading'
+                            <div style={{width: 'fit-content', margin: '0 auto', marginTop: '4rem'}}>
+                                <Loader
+                                    type="ThreeDots"
+                                    color="#111E6C"
+                                    height={50}
+                                    width={50}          
+                                        
+                                />
+                            </div>
                         : 
                         <CartItem name={purchaseItem.productName} image={purchaseItem.imgUrl} 
                             quantity={purchaseQuantity} price={purchaseUnitPrice} totalPrice={totalPrice}
-                            decrement={decrementQuantity} increment={incrementQuantity}
+                            decrement={decrementQuantity} increment={incrementQuantity} purchase={true}
                         />
                     }
                 </div>
