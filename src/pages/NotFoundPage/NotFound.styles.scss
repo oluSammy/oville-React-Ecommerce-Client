@@ -1,0 +1,52 @@
+@import '../../sass/abstracts/variable';
+
+.not-found {
+
+    &__content {
+        width: 60vw;
+        margin: 0 auto;
+        margin-top: 5rem;
+        text-align: center;
+
+        @media only screen and (max-width: $bp-tab) {
+            width: 75vw;
+        }
+    
+        & span {
+            display: block;
+            text-align: center;
+            color: $text-color;
+        }
+    
+    }
+    &__hm {
+        font-size: 7rem;
+
+        @media only screen and (max-width: $bp-tab) {
+            font-size: 4rem;
+        }
+    }
+
+    &__page {
+        font-size: 3rem;
+    }
+
+    &__error {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2rem;
+    }
+
+    &__btn {
+        display: inline-block;
+        margin-top: 4rem;
+
+        padding: 1rem 2.5rem;
+        font-size: 2rem;
+        background-color: $color-primary;
+        color: $color-white;
+        border: none;
+        border-radius: 2.4rem;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}

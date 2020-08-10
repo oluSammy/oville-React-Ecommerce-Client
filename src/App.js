@@ -10,6 +10,7 @@ import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage.compo
 import CartPage from './pages/CartPage/CartPage.components';
 import PurchasePage from './pages/PurchasePage/PurchasePage.components';
 import SearchPage from './pages/SearchPage/SearchPage.component';
+import NotFound from './pages/NotFoundPage/NotFound.component';
 
 //react router
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -60,7 +61,8 @@ class App extends React.Component {
           <Route exact path="/product/:id" component={ProductDetailPage} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/purchase/:id" component={PurchasePage} />
-          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/search/:id" component={SearchPage} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     )

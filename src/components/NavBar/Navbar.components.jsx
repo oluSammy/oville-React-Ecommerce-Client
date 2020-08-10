@@ -7,7 +7,7 @@ import { BsArrowReturnRight } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
 //React router
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
@@ -23,8 +23,18 @@ import { auth } from './../../firebase/firebase.utils';
 class NavBar extends React.Component {
 
     state = {
-        searchString: '',
-        searchItem: null
+        search: ''
+    }
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.setState({...this.state, search: ''});
+        this.props.history.push(`/search/${this.state.search}`);
     }
     
     render() {
@@ -37,8 +47,10 @@ class NavBar extends React.Component {
                         </figure>
                         <p className="navbar__logo--text">Oville</p>
                     </Link>
-                    <form className="navbar__form">
-                        <input type="search" name="search" id="search" placeholder="Search" className="navbar__form--input"/>
+                    <form className="navbar__form" onSubmit={this.handleSubmit}>
+                        <input type="search" name="search" onChange={this.handleChange} value={this.state.search}
+                            placeholder="Search" className="navbar__form--input" required
+                        />
                         <button type="submit" className="navbar__form--submit"> <AiOutlineSearch className="navbar__form--icon"/> </button>
                     </form>
                     <ul className="navbar__list">
@@ -97,4 +109,4 @@ const mapStateToProps = state => ({
     cartCount: selectCartItemsCount(state)
 })
 
-export default connect(mapStateToProps) (NavBar);
+export default withRouter(connect(mapStateToProps) (NavBar));
