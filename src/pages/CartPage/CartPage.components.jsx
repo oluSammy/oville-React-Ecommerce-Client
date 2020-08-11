@@ -5,16 +5,18 @@ import CartItem from '../../components/Cart-Item/CartItem.component';
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { selectCartSlice, selectCartGrandTotal, selectCartItemsCount } from '../../Redux/Cart/cart.selectors';
 import { connect } from 'react-redux';
 import { addCartItem, removeCartItem, reduceCartItem } from '../../Redux/Cart/cart.actions';
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
 import StripeCheckoutButton from './../../components/Stripe-Button/stripe-button.component';
+import { selectUserSlice } from './../../Redux/user/user.selectors';
 
 
 
-const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, cartCount }) => (
+
+const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, cartCount, user }) => (
     <div className="cart-page">
         <div className="cart-page__nav">
             <NavBar/>
@@ -57,27 +59,52 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
             : ''
 
         }
-        <div className="cart-page__btn" style={{marginBottom: '8rem'}}>
+        <div className="cart-page__btn" style={{marginBottom: '1rem'}}>
             <button onClick={() => history.goBack()} className="btn-cart btn-shop" style={{padding: '.8rem 2rem'}}>
                 Continue Shopping
             </button>
             {
                 cartCount ?
                     <div className="" style={{marginRight: '15rem'}}>
-                        <StripeCheckoutButton price={cartTotal} isCart={true} className="btn-buy" />
+                        {
+                            user ? 
+                                <StripeCheckoutButton price={cartTotal} isCart={true} className="btn-buy" />
+                            : <Link to="/signin" className="btn-buy">Log in to make payment</Link>
+                        }
                     </div>
                         
                      :
                 ''
             }
         </div>  
+
+        {
+            user ? 
+                <div className="purchase__note">
+                    <p className="purchase__note--heading">Please use the following TEST credit card</p>
+                    <p className="purchase__note--number">
+                        <span className="purchase__note--header">Card Number:</span> 
+                        <span className="purchase__note--detail">4242 4242 4242 4242</span>
+                    </p>
+                    <p className="purchase__note--number" style={{display: 'inline', marginRight: '1.2rem'}}>
+                        <span className="purchase__note--header">Year:</span> 
+                        <span className="purchase__note--detail">2025</span>
+                    </p>
+                    <p className="purchase__note--number" style={{display: 'inline'}}>
+                        <span className="purchase__note--header">cvc:</span> 
+                        <span className="purchase__note--detail">433</span>
+                    </p>
+                </div>
+            : ''
+        }
     </div>
 );
 
 const mapStateToProps = state => ({
     cart: selectCartSlice(state),
     cartTotal: selectCartGrandTotal(state),
-    cartCount: selectCartItemsCount(state)
+    cartCount: selectCartItemsCount(state),
+    user: selectUserSlice(state)
 });
 
 const mapDispatchToProps = dispatch => ({

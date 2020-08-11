@@ -4,7 +4,7 @@ import './ProductDetail.style.scss';
 import NavBar from '../../components/NavBar/Navbar.components';
 import Review from '../../components/Review/Review.component';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { asyncGetProductDetail } from '../../Redux/ProductDetail/product-detail.actions';
 import { isGettingProductDetailSlice, selectProductDetailSlice } from '../../Redux/ProductDetail/product-detail.selectors';
 
@@ -15,6 +15,8 @@ import { asyncAddReview, asyncGetReviews } from '../../Redux/Reviews/Reiews.acti
 import { selectIsAddingReviewsSlice, selectIsGettingReviews, selectReviewsSlice, selectIsReviewsEmpty } 
 from '../../Redux/Reviews/Reviews.selectors';
 import { addCartItem } from './../../Redux/Cart/cart.actions';
+import { selectUserSlice } from '../../Redux/user/user.selectors';
+
 
 
 class ProductDetailPage extends React.Component {
@@ -43,7 +45,7 @@ class ProductDetailPage extends React.Component {
 
     render() {
         const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, isAddingReview, 
-                isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } }, addItem } = this.props;
+                isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } }, addItem, user } = this.props;
         const productData = { imgUrl, id, price, productName, subTotal: price }
             
         return (
@@ -136,7 +138,16 @@ class ProductDetailPage extends React.Component {
                                     ''
 
                                 }
-                                <button type="submit" className="review__submit btn-buy" disabled={isAddingReview}>Add Review</button>
+                                {
+                                    user ? 
+                                        <button type="submit" className="review__submit btn-buy" disabled={isAddingReview}>
+                                            Add Review
+                                        </button>
+                                    : 
+                                    <Link to="/signin"  className="review__submit btn-buy" style={{margin: '1rem 1rem'}}>
+                                        log in to Add Review
+                                    </Link>
+                                }
                             </div>
                         </form>
                     </div>
@@ -152,7 +163,8 @@ const mapStateToProps = state =>  ({
     isAddingReview: selectIsAddingReviewsSlice(state),
     isGettingReviews: selectIsGettingReviews(state),
     reviews: selectReviewsSlice(state),
-    isReviewsEmpty: selectIsReviewsEmpty(state)
+    isReviewsEmpty: selectIsReviewsEmpty(state),
+    user: selectUserSlice(state)
 
 });
 

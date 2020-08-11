@@ -4,7 +4,7 @@ import NavBar from './../../components/NavBar/Navbar.components';
 import CartItem from '../../components/Cart-Item/CartItem.component';
 import { connect } from 'react-redux';
 import { asyncGetPurchaseItem, IncrementPurchaseItem, decrementPurchaseItem } from './../../Redux/Purchase-Item/purchaseItem.actions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { isGettingPurchaseItem, selectPurchaseItemSlice, selectPurchaseQuantitySlice, selectUnitPrice, selectTotalPrice }
 from '../../Redux/Purchase-Item/purchaseItem.selectors';
@@ -12,6 +12,7 @@ from '../../Redux/Purchase-Item/purchaseItem.selectors';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import StripeCheckoutButton from '../../components/Stripe-Button/stripe-button.component';
+import { selectUserSlice } from '../../Redux/user/user.selectors';
 
 
 class PurchasePage extends React.Component {
@@ -23,7 +24,7 @@ class PurchasePage extends React.Component {
 
     render() {
         const { isGettingItems, purchaseItem, purchaseQuantity, purchaseUnitPrice,
-                totalPrice, incrementQuantity, decrementQuantity } = this.props;
+                totalPrice, incrementQuantity, decrementQuantity, user } = this.props;
 
         return(
             <div className="purchase">
@@ -56,8 +57,31 @@ class PurchasePage extends React.Component {
                     }
                 </div>
                 <div className="purchase__btn" style={{textAlign: 'center', marginTop: '2rem'}}>
-                    <StripeCheckoutButton price={totalPrice} />
+                    {
+                            user ? 
+                                <StripeCheckoutButton price={totalPrice} isCart={true} className="btn-buy" />
+                            : <Link to="/signin" className="btn-buy">Log in to make payment</Link>
+                    }
                 </div>
+                {
+                    user ?
+                        <div className="purchase__note purchase__card">
+                            <p className="purchase__note--heading">Please use the following TEST credit card</p>
+                            <p className="purchase__note--number">
+                                <span className="purchase__note--header">Card Number:</span> 
+                                <span className="purchase__note--detail">4242 4242 4242 4242</span>
+                            </p>
+                            <p className="purchase__note--number" style={{display: 'inline', marginRight: '1.2rem'}}>
+                                <span className="purchase__note--header">Year:</span> 
+                                <span className="purchase__note--detail">2025</span>
+                            </p>
+                            <p className="purchase__note--number" style={{display: 'inline'}}>
+                                <span className="purchase__note--header">cvc:</span> 
+                                <span className="purchase__note--detail">433</span>
+                            </p>
+                        </div> :
+                    ''
+                }
             </div>
         )
     }
@@ -68,7 +92,8 @@ const mapStateToProps = state => ({
     purchaseItem: selectPurchaseItemSlice(state),
     purchaseQuantity: selectPurchaseQuantitySlice(state),
     purchaseUnitPrice: selectUnitPrice(state),
-    totalPrice: selectTotalPrice(state)
+    totalPrice: selectTotalPrice(state),
+    user: selectUserSlice(state)
 });
 
 const mapDispatchToProp = dispatch => ({

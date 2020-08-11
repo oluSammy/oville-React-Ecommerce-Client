@@ -1,5 +1,5 @@
 import { cartActionTypes } from './cart.types';
-import { addNewCartItem, cartReduction, emptyCartItems } from './cart.utils';
+import { addNewCartItem, cartReduction } from './cart.utils';
 
 const INIT_STATE = {
     cart: []

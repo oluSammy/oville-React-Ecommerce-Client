@@ -2,9 +2,9 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
 import image from '../../assets/img/favicon-96x96.png';
-import { numberWithCommas } from '../../utility-functions/utilityFunctions';
 import { connect } from 'react-redux';
 import { emptyCart } from '../../Redux/Cart/cart.actions';
+import swal  from 'sweetalert';
 
 
 
@@ -14,7 +14,7 @@ const StripeCheckoutButton = ({ price, emptyCartItems, isCart }) => {
 
     const onToken = token => {
         console.log(token);
-        alert('payment successful');
+        swal("Done!", "Payment Successful", "success");
         if(isCart){
             emptyCartItems();
         }
@@ -23,11 +23,11 @@ const StripeCheckoutButton = ({ price, emptyCartItems, isCart }) => {
     return (
         <StripeCheckout 
             name='Oville'
-            description={`Total is N ${numberWithCommas(price)}`}
+            description='Gadgets E-commerce website'
             amount={stripePrice}
             shippingAddress
             billingAddress
-            currency='ngn'
+            currency='NGN'
             image={image}
             panelLabel='Pay'
             token={onToken}

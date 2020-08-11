@@ -25,7 +25,3 @@ export const cartReduction = (cartItems, itemToRemove) => {
         )
     }
 }
-
-export const emptyCartItems = (arr) => {
-    return []
-}
