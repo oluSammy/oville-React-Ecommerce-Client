@@ -10,6 +10,8 @@ import { selectCartSlice, selectCartGrandTotal, selectCartItemsCount } from '../
 import { connect } from 'react-redux';
 import { addCartItem, removeCartItem, reduceCartItem } from '../../Redux/Cart/cart.actions';
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
+import StripeCheckoutButton from './../../components/Stripe-Button/stripe-button.component';
+
 
 
 const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, cartCount }) => (
@@ -55,13 +57,17 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
             : ''
 
         }
-        <div className="cart-page__btn">
+        <div className="cart-page__btn" style={{marginBottom: '8rem'}}>
             <button onClick={() => history.goBack()} className="btn-cart btn-shop" style={{padding: '.8rem 2rem'}}>
                 Continue Shopping
             </button>
             {
                 cartCount ?
-                    <button className="btn-buy">Proceed To Checkout</button>    :
+                    <div className="" style={{marginRight: '15rem'}}>
+                        <StripeCheckoutButton price={cartTotal} isCart={true} className="btn-buy" />
+                    </div>
+                        
+                     :
                 ''
             }
         </div>  

@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 import { asyncGetPurchaseItem, IncrementPurchaseItem, decrementPurchaseItem } from './../../Redux/Purchase-Item/purchaseItem.actions';
 import { withRouter } from 'react-router-dom';
 
-import { isGettingPurchaseItem, selectPurchaseItemSlice, selectPurchaseQuantitySlice, selectUnitPrice, selectTotalPrice } 
+import { isGettingPurchaseItem, selectPurchaseItemSlice, selectPurchaseQuantitySlice, selectUnitPrice, selectTotalPrice }
 from '../../Redux/Purchase-Item/purchaseItem.selectors';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
+import StripeCheckoutButton from '../../components/Stripe-Button/stripe-button.component';
 
 
 class PurchasePage extends React.Component {
@@ -21,7 +22,7 @@ class PurchasePage extends React.Component {
     }
 
     render() {
-        const { isGettingItems, purchaseItem, purchaseQuantity, purchaseUnitPrice, 
+        const { isGettingItems, purchaseItem, purchaseQuantity, purchaseUnitPrice,
                 totalPrice, incrementQuantity, decrementQuantity } = this.props;
 
         return(
@@ -37,25 +38,25 @@ class PurchasePage extends React.Component {
                 </div>
                 <div className="purchase__cart">
                     {
-                        isGettingItems ? 
+                        isGettingItems ?
                             <div style={{width: 'fit-content', margin: '0 auto', marginTop: '4rem'}}>
                                 <Loader
                                     type="ThreeDots"
                                     color="#111E6C"
                                     height={50}
-                                    width={50}          
-                                        
+                                    width={50}
+
                                 />
                             </div>
-                        : 
-                        <CartItem name={purchaseItem.productName} image={purchaseItem.imgUrl} 
+                        :
+                        <CartItem name={purchaseItem.productName} image={purchaseItem.imgUrl}
                             quantity={purchaseQuantity} price={purchaseUnitPrice} totalPrice={totalPrice}
                             decrement={decrementQuantity} increment={incrementQuantity} purchase={true}
                         />
                     }
                 </div>
-                <div className="purchase__btn">
-                <button className="btn-buy" style={{padding: '1rem 2rem', marginTop: '2rem'}}>Proceed To Payment</button>
+                <div className="purchase__btn" style={{textAlign: 'center', marginTop: '2rem'}}>
+                    <StripeCheckoutButton price={totalPrice} />
                 </div>
             </div>
         )
