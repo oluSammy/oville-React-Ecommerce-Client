@@ -23,13 +23,10 @@ class SearchPage extends React.Component {
         const queryRef = firestore.collection('products');
         this.setState({...this.state, isSearching: true});
         const search = await queryRef.where('productName', '==', `${id}`).get();
-        // console.log(search);
         if(search.empty) {
-            console.log('not found');
             this.setState({ ...this.state, isEmpty: true, isSearching: false });
         } else {
             this.setState({ ...this.state, searchResult: search, isSearching: false });
-            console.log(this.state.searchResult);
         }
     }
 
@@ -39,13 +36,12 @@ class SearchPage extends React.Component {
             const queryRef = firestore.collection('products');
             this.setState({...this.state, isSearching: true});
             const search = await queryRef.where('productName', '==', `${id}`).get();
-            // console.log(search);
             if(search.empty) {
-                console.log('not found');
+
                 this.setState({ ...this.state, isEmpty: true, isSearching: false });
             } else {
                 this.setState({ ...this.state, searchResult: search, isSearching: false });
-                console.log(this.state.searchResult);
+
             }
         }
     }

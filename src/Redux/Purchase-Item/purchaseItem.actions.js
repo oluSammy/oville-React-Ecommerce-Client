@@ -40,7 +40,6 @@ export const asyncGetPurchaseItem = id => {
             const purchaseItemRef = firestore.collection('products').doc(`${id}`);
             const purchaseItem = await purchaseItemRef.get();
             dispatch(getPurchaseItemSuccess(purchaseItem.data()));
-            console.log(purchaseItem.data());
             dispatch(setPrice(purchaseItem.data().price));
 
         } catch (error) {

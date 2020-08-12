@@ -13,7 +13,6 @@ const StripeCheckoutButton = ({ price, emptyCartItems, isCart }) => {
     const publishableKey = 'pk_test_RXMKhe3pI2oRHmSOAzW11s9F00ffuBsNbk'
 
     const onToken = token => {
-        console.log(token);
         swal("Done!", "Payment Successful", "success");
         if(isCart){
             emptyCartItems();

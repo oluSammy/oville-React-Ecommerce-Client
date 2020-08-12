@@ -84,7 +84,6 @@ class Signin extends React.Component {
                     button: "ok",
                 });
             }
-            console.log(error);
         }
     }
 

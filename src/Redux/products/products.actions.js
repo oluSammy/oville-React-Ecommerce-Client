@@ -52,7 +52,6 @@ export const asyncGetProductsHighlights = () => {
             dispatch(getProductHighlightsSuccess(highlights));
         } catch (error) {
             dispatch(getProductHighlightsFailure(error));   
-            console.log(error);         
                 swal({
                     title: "Error!",
                     text: "An Error occurred, try again",

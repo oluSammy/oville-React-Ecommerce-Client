@@ -4,11 +4,27 @@ import { Link, withRouter } from 'react-router-dom';
 import { limitSentence, numberWithCommas } from './../../utility-functions/utilityFunctions';
 import { connect } from 'react-redux';
 import { addCartItem } from './../../Redux/Cart/cart.actions';
+import { toast } from 'react-toastify';
 
 
 const Product = ({ productId, productData, history, addItem }) => {
     const { productName, imgUrl, price, description } = productData;
     const cartItem = {...productData, id: productId, subTotal: price};
+
+    const handleCartAddition = (cartItem) => {
+        toast(`${productName} added to cart`, {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        addItem(cartItem)
+    }
+
+    
     return(
         <div className="product">
             <div className="product__top" onClick={()=>history.push(`/product/${productId}`)}>
@@ -26,7 +42,7 @@ const Product = ({ productId, productData, history, addItem }) => {
                 </p>
                 <div className="product__btn">
                     <Link to={`/purchase/${productId}`} className="btn-buy">Buy Now</Link>
-                    <button className="btn-cart" onClick={()=> addItem(cartItem)}>Add To Cart</button>
+                    <button className="btn-cart" onClick={()=> handleCartAddition(cartItem)}>Add To Cart</button>
                 </div>
             </div>
         </div>

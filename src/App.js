@@ -24,6 +24,8 @@ import { connect } from 'react-redux';
 import { selectUserSlice } from './Redux/user/user.selectors';
 import { asyncGetCategory } from './Redux/category/category.actions';
 import { asyncGetProductsHighlights } from './Redux/products/products.actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class App extends React.Component {
@@ -40,6 +42,19 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop/:id" component={ShopPage} />
