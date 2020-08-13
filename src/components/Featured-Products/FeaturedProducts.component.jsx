@@ -1,20 +1,14 @@
 import React from 'react';
 import './FeaturedProducts.scss';
 import Featured from '../Featured/Featured.component';
-import { selectProductHighlightsSlice, selectIsGettingHighlights } from './../../Redux/products/products.selectors';
+import { selectProductHighlightsSlice } from './../../Redux/products/products.selectors';
 import { connect } from 'react-redux';
 
 
 
-const FeaturedProducts = ({ isGettingHighlights, highlights }) => (
+const FeaturedProducts = ({ highlights }) => (
     <div className="featured-products">
         <h1 className="featured-products__heading">Featured</h1>
-
-        {
-            isGettingHighlights ?
-            '' : ''
-        }
-
         {
             
             highlights ?
@@ -24,14 +18,13 @@ const FeaturedProducts = ({ isGettingHighlights, highlights }) => (
                     return <Featured key={`${highlight.products[randomNo].id}`} 
                         productId={highlight.products[randomNo].id} productData={highlight.products[randomNo].data}
                     />
-                }
+                } return 1;
             }): '' : ''
         }
     </div>
 );
 
 const mapStateTOProps = state => ({
-    isGettingHighlights: selectIsGettingHighlights(state),
     highlights: selectProductHighlightsSlice(state)
 })
 

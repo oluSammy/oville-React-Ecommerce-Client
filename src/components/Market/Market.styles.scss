@@ -7,8 +7,12 @@
     padding: 3rem;
     height: min-content;
 
-    &__error {
+    @media only screen and (max-width: $bp-phone-2) {
+        padding: 0rem;
+        margin-left: 0;
+    }
 
+    &__error {
 
         &--heading {
             font-size: 3rem;
