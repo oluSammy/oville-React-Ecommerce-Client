@@ -7,7 +7,7 @@ import { addCartItem } from './../../Redux/Cart/cart.actions';
 import { toast } from 'react-toastify';
 
 const Featured = ({ productId, productData, addToCart }) => {
-    const { productName, imgUrl, price, description } = productData;
+    const { productName, imgUrl, price } = productData;
     const cartItem = {...productData, id: productId, subTotal: price};
 
     const handleCartAddition = (cartItem) => {

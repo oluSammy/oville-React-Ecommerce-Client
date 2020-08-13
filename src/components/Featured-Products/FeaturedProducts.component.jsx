@@ -4,9 +4,6 @@ import Featured from '../Featured/Featured.component';
 import { selectProductHighlightsSlice, selectIsGettingHighlights } from './../../Redux/products/products.selectors';
 import { connect } from 'react-redux';
 
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from 'react-loader-spinner';
-
 
 
 const FeaturedProducts = ({ isGettingHighlights, highlights }) => (
