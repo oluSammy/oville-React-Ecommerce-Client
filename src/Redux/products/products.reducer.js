@@ -2,7 +2,7 @@ import { productsActionTypes } from './products.types';
 
 const INIT_STATE = {
     isGettingProductHighLights: false,
-    productHighlights: '',
+    productHighlights: null,
     getProductHighlightsError: '',
     isGettingShopProducts: false,
     shopProducts: null,

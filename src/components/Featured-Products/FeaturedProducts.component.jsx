@@ -9,18 +9,23 @@ import { connect } from 'react-redux';
 const FeaturedProducts = ({ isGettingHighlights, highlights }) => (
     <div className="featured-products">
         <h1 className="featured-products__heading">Featured</h1>
+
         {
-            isGettingHighlights ? 
-                ''
-            : ''
-        }        
+            isGettingHighlights ?
+            '' : ''
+        }
+
         {
-             highlights ? highlights.map(highlight => {
+            
+            highlights ?
+                highlights[0].products.length !==0 ? highlights.map(highlight => {
                 const randomNo = Math.floor(Math.random() * 7) + 1;
-                return <Featured key={`${highlight.products[randomNo].id}`} 
-                    productId={highlight.products[randomNo].id} productData={highlight.products[randomNo].data}
-                />
-            }): ''
+                if(highlight.products[randomNo].id !== undefined) {
+                    return <Featured key={`${highlight.products[randomNo].id}`} 
+                        productId={highlight.products[randomNo].id} productData={highlight.products[randomNo].data}
+                    />
+                }
+            }): '' : ''
         }
     </div>
 );

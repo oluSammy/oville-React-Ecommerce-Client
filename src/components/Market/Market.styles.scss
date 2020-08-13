@@ -6,5 +6,29 @@
     margin-left: 2rem;
     padding: 3rem;
     height: min-content;
+
+    &__error {
+
+
+        &--heading {
+            font-size: 3rem;
+            color: $color-primary;
+        }
+        
+        &--span {
+            margin-left: .5rem;
+            color: $text-color;
+        }
+
+        &--check {
+            font-size: 1.6em;
+        }
+
+        &--refresh {
+            text-decoration: underline;
+            color: $color-primary;
+            cursor: pointer;
+        }
+    }
     
 }
