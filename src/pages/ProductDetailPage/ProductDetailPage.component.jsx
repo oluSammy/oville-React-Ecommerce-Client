@@ -27,8 +27,8 @@ class ProductDetailPage extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const { match:{ params: { id } }, addReview } = this.props;
-        await addReview(id, this.state.review);
+        const { match:{ params: { id } }, addReview, user } = this.props;
+        await addReview(id, this.state.review, user.email);
         this.setState({ review: '' });
     }
 
@@ -47,6 +47,9 @@ class ProductDetailPage extends React.Component {
         const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, isAddingReview, 
                 isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } }, addItem, user } = this.props;
         const productData = { imgUrl, id, price, productName, subTotal: price }
+        if(user) {
+            console.log(user.email)
+        }
             
         return (
             <div className="product-detail">
@@ -84,13 +87,16 @@ class ProductDetailPage extends React.Component {
                                 style={{margin: 'auto auto', width: '30%', marginTop: '15%', marginBottom: '15%'}}               
                             />
                         : 
-                            <div>
-                                <h2 className="product-detail__description--name">{productName}</h2>
-                                <h6 className="product-detail__description--price">&#8358; {numberWithCommas(`${price}`)} </h6>
-                                <p className="product-detail__description--detail">
-                                    {description}                                    
-                                </p> 
-                            </div>
+
+                            price ? 
+                                <div>
+                                    <h2 className="product-detail__description--name">{productName}</h2>
+                                    <h6 className="product-detail__description--price">&#8358; {numberWithCommas(`${price}`)} </h6>
+                                    <p className="product-detail__description--detail">
+                                        {description}                                    
+                                    </p> 
+                                </div>
+                            : ''
 
                     }
                 </div>
@@ -114,7 +120,10 @@ class ProductDetailPage extends React.Component {
                                     isReviewsEmpty ?
                                     <p style={{fontSize: '1.4rem'}}>No Reviews Yet</p> :
                                     reviews.map(review => 
-                                        <Review key={review.createdAt} review={review.review} createdAt={review.createdAt}/>
+                                        <Review 
+                                            key={review.createdAt} 
+                                            review={review.review} 
+                                            createdAt={review.createdAt} reviewBy={review.reviewBy}/>
                                     )
                             }                            
                         </div>
@@ -170,7 +179,7 @@ const mapStateToProps = state =>  ({
 
 const mapDispatchToProps = dispatch => ({
     getProductDetail: productId => dispatch(asyncGetProductDetail(productId)),
-    addReview: (productId, review) => dispatch(asyncAddReview(productId, review)),
+    addReview: (productId, review, user) => dispatch(asyncAddReview(productId, review, user)),
     getReviews: (productId) => dispatch(asyncGetReviews(productId)),
     addItem: item => dispatch(addCartItem(item))
 });

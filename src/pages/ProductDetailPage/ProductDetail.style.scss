@@ -2,9 +2,31 @@
 
 .product-detail {
     display: grid;
-    grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 27rem) minmax(min-content, 33rem) 54rem minmax(2rem, 1fr);
+    grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 27rem) minmax(min-content, 33rem) 
+    minmax(min-content, 54rem)  minmax(2rem, 1fr);
     grid-column-gap: 2rem;
     grid-row-gap: 3rem;
+
+    @media only screen and (max-width: $bp-tab) {
+        grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 23rem) minmax(min-content, 25rem) 
+        minmax(min-content, 35rem)  minmax(2rem, 1fr);
+    }
+
+    @media only screen and (max-width: $bp-phone-1) {
+        grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 23rem) minmax(min-content, 25rem) 
+        minmax(min-content, 25rem)  minmax(2rem, 1fr);
+    }
+
+    @media only screen and (max-width: $bp-phone-2) {
+        grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 20rem) minmax(min-content, 20rem) 
+        minmax(min-content, 20rem)  minmax(2rem, 1fr);
+    }
+
+    @media only screen and (max-width: $bp-phone-small) {
+        grid-template-columns: minmax(2rem, 1fr) minmax(min-content, 17rem) minmax(min-content, 17rem) 
+        minmax(min-content, 17rem)  minmax(2rem, 1fr);
+    }
+    
 
     &__nav {
         grid-column: 1 / -1;
@@ -25,6 +47,20 @@
             height: 25rem;
             margin: 0 auto;
             margin-bottom: 1rem;
+
+            @media only screen and (max-width: $bp-tab) {
+                width: 20rem;
+                height: 20rem;
+            }
+
+            @media only screen and (max-width: $bp-phone-2) {
+                width: 17rem;
+                height: 17rem;
+            }
+            @media only screen and (max-width: $bp-phone-small) {
+                width: 15rem;
+                height: 15rem;
+            }
         }
     }
 
@@ -39,6 +75,11 @@
     &__description {
         padding: 2rem;
         color: $text-color;
+
+        @media only screen and (max-width: $bp-tab) {
+            grid-row: 3 / 4;
+            grid-column: 3 / 4;
+        }
 
         &--name {
             font-size: 2.53rem;
@@ -63,7 +104,7 @@
         padding: 2rem;
 
         @media only screen and (max-width: $bp-tab) {
-            grid-row: 3 / 4;
+            grid-row: 4 / 5;
             grid-column: 3 / 4;
         }
 

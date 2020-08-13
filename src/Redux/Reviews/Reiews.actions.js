@@ -1,6 +1,6 @@
 import { reviewsActionTypes } from './Reviews.types';
 import { firestore, FieldValue } from '../../firebase/firebase.utils';
-import { swal } from 'sweetalert';
+import swal  from 'sweetalert';
 
 const getReviewStart = () => ({
     type: reviewsActionTypes.GET_REVIEWS_START
@@ -61,7 +61,7 @@ const addReviewFailure = error => ({
     payload: error
 });
 
-export const asyncAddReview = (productId, review) => {
+export const asyncAddReview = (productId, review, user) => {
     
     return async dispatch => {
         try {
@@ -71,7 +71,8 @@ export const asyncAddReview = (productId, review) => {
             await reviewRef.add({
                 productId,
                 review,
-                createdAt: FieldValue
+                createdAt: FieldValue,
+                reviewBy: user
             });
 
             dispatch(addReviewSuccess());
