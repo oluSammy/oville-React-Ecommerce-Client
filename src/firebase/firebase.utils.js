@@ -16,6 +16,9 @@ const firebaseConfig = {
 //initialize app
 firebase.initializeApp(firebaseConfig);
 
+//enable offline support
+firebase.firestore().enablePersistence();
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
