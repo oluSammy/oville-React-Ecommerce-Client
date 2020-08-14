@@ -60,16 +60,16 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
 
         }
         <div className="cart-page__btn" style={{marginBottom: '1rem'}}>
-            <button onClick={() => history.goBack()} className="btn-cart btn-shop" style={{padding: '.8rem 2rem'}}>
+            <button onClick={() => history.goBack()} className="btn-cart btn-shop" style={{padding: '.8rem 2rem', marginLeft: '-1.4rem'}}>
                 Continue Shopping
             </button>
             {
                 cartCount ?
-                    <div className="" style={{marginRight: '15rem'}}>
+                    <div className="car-page__payment-btn" >
                         {
                             user ? 
                                 <StripeCheckoutButton price={cartTotal} isCart={true} className="btn-buy" />
-                            : <Link to="/signin" className="btn-buy">Log in to make payment</Link>
+                            : <Link to="/signin" className="btn-buy btn-payment">Log in to make payment</Link>
                         }
                     </div>
                         

@@ -11,6 +11,10 @@
     margin-bottom: .8rem;
     cursor: pointer;
     text-decoration: none;
+
+    @media only screen and (max-width: $bp-phone-small) {
+        font-size: 1.4rem;
+    }
 }
 
 .btn-cart {
@@ -26,8 +30,19 @@
     margin-bottom: .8rem;
     cursor: pointer;
     text-decoration: none;
+
+    @media only screen and (max-width: $bp-phone-small) {
+        font-size: 1.4rem;
+    }
 }
 
 .btn-shop {
     text-decoration: none;
+}
+
+.btn-payment {
+
+    @media only screen and (max-width: $bp-phone-small) {
+        font-size: 1.4rem;
+    }
 }
