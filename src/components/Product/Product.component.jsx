@@ -13,7 +13,7 @@ const Product = ({ productId, productData, history, addItem }) => {
 
     const handleCartAddition = (cartItem) => {
         toast(`${productName} added to cart`, {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,

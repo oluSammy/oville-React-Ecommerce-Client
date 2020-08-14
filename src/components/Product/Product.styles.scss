@@ -67,6 +67,10 @@
         @media only screen and (max-width: $bp-tab-2) {
            top: -1.9rem;
         }
+
+        @media only screen and (max-width: $bp-phone-2) {
+            top: .81rem;
+         }
     }
 }
 

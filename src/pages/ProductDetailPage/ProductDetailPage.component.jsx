@@ -16,6 +16,7 @@ import { selectIsAddingReviewsSlice, selectIsGettingReviews, selectReviewsSlice,
 from '../../Redux/Reviews/Reviews.selectors';
 import { addCartItem } from './../../Redux/Cart/cart.actions';
 import { selectUserSlice } from '../../Redux/user/user.selectors';
+import { toast } from 'react-toastify';
 
 
 
@@ -71,7 +72,21 @@ class ProductDetailPage extends React.Component {
                                     <img src={imgUrl} alt="product" className="product-detail__img"/>
                                 </figure>
                                 <button onClick={()=>history.push(`/purchase/${id}`)} className="btn-buy">Buy Now</button>
-                                <button className="btn-cart" onClick={() => addItem(productData)}>Add To Cart</button>
+                                <button className="btn-cart" 
+                                    onClick={() => {
+                                        addItem(productData);
+                                        toast(`${productName} added to cart`, {
+                                            position: "bottom-right",
+                                            autoClose: 1500,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                        });
+                                    }}>
+                                    Add To Cart
+                                </button>
                             </div>
 
                     }
