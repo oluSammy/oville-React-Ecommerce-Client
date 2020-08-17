@@ -48,10 +48,7 @@ class ProductDetailPage extends React.Component {
         const { isGettingProductDetail, productDetail: { imgUrl, productName, price, description }, isAddingReview, 
                 isGettingReviews, reviews, isReviewsEmpty, history, match:{ params: { id } }, addItem, user } = this.props;
         const productData = { imgUrl, id, price, productName, subTotal: price }
-        if(user) {
-            console.log(user.email)
-        }
-            
+          
         return (
             <div className="product-detail">
                 <div className="product-detail__nav">

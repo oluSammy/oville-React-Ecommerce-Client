@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addCartItem } from './../../Redux/Cart/cart.actions';
 import { toast } from 'react-toastify';
+import Fade from 'react-reveal/Fade';
 
 const Featured = ({ productId, productData, addToCart }) => {
     const { productName, imgUrl, price } = productData;
@@ -23,15 +24,17 @@ const Featured = ({ productId, productData, addToCart }) => {
         addToCart(cartItem)
     }
     return(
-        <div className="featured">
-            <figure className="featured__img-container">
-                <img src={imgUrl} alt="featured product" className="featured__img"/>
-            </figure>
-            <h5 className="featured__name">{productName}</h5>
-            <p className="featured__price">&#8358; {numberWithCommas(price)}</p>
-            <Link to={`/purchase/${productId}`} className="btn-buy">Buy Now</Link>
-            <button onClick={() => handleCartAddition(cartItem)} className="btn-cart">Add To Cart</button>
-        </div>
+        <Fade left>
+            <div className="featured">
+                <figure className="featured__img-container">
+                    <img src={imgUrl} alt="featured product" className="featured__img"/>
+                </figure>
+                <h5 className="featured__name">{productName}</h5>
+                <p className="featured__price">&#8358; {numberWithCommas(price)}</p>
+                <Link to={`/purchase/${productId}`} className="btn-buy">Buy Now</Link>
+                <button onClick={() => handleCartAddition(cartItem)} className="btn-cart">Add To Cart</button>
+            </div>
+        </Fade>
     )
 } ;
 

@@ -9,8 +9,8 @@ import { selectCategorySlice, isGettingCategorySlice } from '../../Redux/categor
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
-
-
+import { motion } from 'framer-motion';
+import { categoryChildVariants, categoryVariants } from '../../Animations/category.animations';
 
 
 class Category extends React.Component {
@@ -21,7 +21,11 @@ class Category extends React.Component {
         return (
             <div className="category">
                 <h2 className="category__heading">Categories</h2>
-                <ul className="category__list">
+                <motion.ul className="category__list"
+                    variants={categoryVariants}
+                    initial="initial"
+                    animate="animate"
+                >
                     {
                         isGettingCategories ? 
                             <Loader
@@ -33,16 +37,18 @@ class Category extends React.Component {
                             />
                         :  categorySlice ? categorySlice.map(category => {
                             return(
-                                <li key={category.categoryName}>                    
+                                <motion.li key={category.categoryName}
+                                    variants={categoryChildVariants}
+                                >                    
                                     <BsArrowReturnRight className="category__icon"/>
                                     <Link to={`/shop/${category.categoryName}`} className="category__list--item">
                                         {category.categoryName}
                                     </Link>
-                                </li>
+                                </motion.li>
                             )
                         }) : ''
                     }
-                </ul>
+                </motion.ul>
             </div>
         )
     }

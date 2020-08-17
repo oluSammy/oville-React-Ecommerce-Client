@@ -12,12 +12,18 @@ import { addCartItem, removeCartItem, reduceCartItem } from '../../Redux/Cart/ca
 import { numberWithCommas } from '../../utility-functions/utilityFunctions';
 import StripeCheckoutButton from './../../components/Stripe-Button/stripe-button.component';
 import { selectUserSlice } from './../../Redux/user/user.selectors';
+import { cartVariants } from '../../Animations/cart.animations';
+import { motion } from 'framer-motion';
 
 
 
 
 const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, cartCount, user }) => (
-    <div className="cart-page">
+    <motion.div className="cart-page"
+        variants={cartVariants}
+        initial="initial"
+        animate="animate"
+    >
         <div className="cart-page__nav">
             <NavBar/>
         </div>
@@ -41,6 +47,7 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
             : ''
 
         }
+        
         <div className="cart-page__items">
             {
                 cart.length === 0 ? '' :
@@ -97,7 +104,7 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
                 </div>
             : ''
         }
-    </div>
+    </motion.div>
 );
 
 const mapStateToProps = state => ({
