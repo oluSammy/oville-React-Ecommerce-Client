@@ -17,11 +17,12 @@
         & li {
             margin-bottom: 1rem;
             cursor: pointer;
+            // background-color: orangered;
         }
-
+        
         &--item {
-            text-decoration: none;
             color: $text-color;
+            text-decoration: none;
             font-size: 1.9rem;
             text-transform: capitalize;
         }
@@ -41,5 +42,12 @@
     & a {
         color: $color-grey-light;
     }
+}
 
+.category-list:hover {
+    background-color: $grey-4;
+}
+
+.category-list:hover .category__list--item {
+    color: $color-white;
 }

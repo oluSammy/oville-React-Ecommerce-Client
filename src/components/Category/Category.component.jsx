@@ -39,6 +39,7 @@ class Category extends React.Component {
                             return(
                                 <motion.li key={category.categoryName}
                                     variants={categoryChildVariants}
+                                    className="category-list"
                                 >                    
                                     <BsArrowReturnRight className="category__icon"/>
                                     <Link to={`/shop/${category.categoryName}`} className="category__list--item">
