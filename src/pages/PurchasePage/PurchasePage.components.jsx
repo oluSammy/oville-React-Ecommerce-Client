@@ -59,7 +59,7 @@ class PurchasePage extends React.Component {
                 <div className="purchase__btn" style={{textAlign: 'center', marginTop: '2rem'}}>
                     {
                             user ? 
-                                <StripeCheckoutButton price={totalPrice} isCart={true} className="btn-buy" />
+                                <StripeCheckoutButton price={totalPrice} className="btn-buy" />
                             : <Link to="/signin" className="btn-buy">Log in to make payment</Link>
                     }
                 </div>
