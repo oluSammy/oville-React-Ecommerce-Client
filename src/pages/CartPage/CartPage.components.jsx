@@ -87,7 +87,7 @@ const CartPage = ({ cart, addItem, cartTotal, removeItem, reduceItem, history, c
 
         {
             user ? 
-                <div className="purchase__note">
+                <div className="purchase__note" style={{marginBottom: '10rem'}}>
                     <p className="purchase__note--heading">Please use the following TEST credit card</p>
                     <p className="purchase__note--number">
                         <span className="purchase__note--header">Card Number:</span> 
