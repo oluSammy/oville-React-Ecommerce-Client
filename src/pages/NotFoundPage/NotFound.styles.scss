@@ -20,27 +20,31 @@
     
     }
     &__hm {
-        font-size: 7rem;
+        font-size: 4rem;
+        font-family: 'Kaushan Script', cursive;
+        color: $color-primary !important;
 
         @media only screen and (max-width: $bp-tab) {
-            font-size: 4rem;
+            font-size: 3rem;
+            font-weight: 200;
         }
     }
 
     &__page {
-        font-size: 3rem;
+        font-size: 2.4rem;
     }
 
     &__error {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 2rem;
+        color: orangered !important;
     }
 
     &__btn {
         display: inline-block;
         margin-top: 4rem;
 
-        padding: 1rem 2.5rem;
+        padding: .4rem 2.5rem;
         font-size: 2rem;
         background-color: $color-primary;
         color: $color-white;
